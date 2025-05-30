@@ -44,10 +44,25 @@
         <button onclick="window.location.href='/student-portal'">
           Student Portal
         </button>
-        <button onclick="window.location.href='/admin-portal'">
-          Admin Portal
-        </button>
+        <button id="admin-btn">Admin Portal</button>
       </div>
     </div>
+
+    <script>
+      function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(";").shift();
+      }
+
+      const authToken = getCookie("auth_token");
+      const adminBtn = document.getElementById("admin-btn");
+
+      if (authToken) {
+        adminBtn.onclick = () => (window.location.href = "/admin-dashboard");
+      } else {
+        adminBtn.onclick = () => (window.location.href = "/admin-login");
+      }
+    </script>
   </body>
 </html>
