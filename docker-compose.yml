@@ -1,9 +1,11 @@
 services:
   mongo:
     image: mongo:4.2.5
-    container_name: mongo_db # Give a specific container name
+    container_name: mongo_db
+    ports:
+      - "27017:27017"
     volumes:
-      - mongodb_data:/data/db # Persist data
+      - mongodb_data:/data/db
     restart: unless-stopped
 
   myapp:

@@ -1,7 +1,8 @@
-from flask import Flask, send_file, make_response, request
+from flask import Flask, send_file, make_response, request, render_template
 from util.helper import *
 from util.authentication import *
 from datetime import datetime
+from util.database import *
 
 app = Flask(__name__)
 
@@ -38,12 +39,26 @@ def log_raw_response(response):
         print(f"Response logging failed: {e}")
     return response
 
+import urllib.parse
+
 def redact_tokens_and_passwords(raw: str) -> str:
-    # Remove lines with auth token or password fields (case insensitive)
+    # Define sensitive keys
+    sensitive_keys = ['authorization', 'auth_token', 'password']
+
+    # First, try to parse as URL-encoded form data
+    try:
+        parsed = urllib.parse.parse_qsl(raw, keep_blank_values=True)
+        redacted = [(k, v) for k, v in parsed if all(s not in k.lower() for s in sensitive_keys)]
+        if redacted:
+            return urllib.parse.urlencode(redacted)
+    except Exception:
+        pass  # Fall back to line-by-line filtering
+
+    # Fallback: remove lines containing sensitive fields
     lines = raw.splitlines()
     filtered = []
     for line in lines:
-        if any(s in line.lower() for s in ['authorization', 'auth_token', 'password']):
+        if any(s in line.lower() for s in sensitive_keys):
             continue
         filtered.append(line)
     return "\n".join(filtered)
@@ -86,6 +101,7 @@ def after_req_resp(response):
 
 @app.route('/')
 def send_home():
+    admins.insert_one({"id":"123456","username":"","password":"","auth_token":""})
     return send_file('public/html/home.html',mimetype='text/html')
 
 @app.route('/public/images/<filename>')
@@ -108,6 +124,22 @@ def adminRegister():
 @app.route('/admin-login',methods=['POST'])
 def adminlogin():
     return admin_login()
+
+
+@app.route('/admin/dashboard', methods=['GET'])
+def admin_dashboard():
+    return send_file('public/html/template.html', mimetype='text/html')
+
+@app.route('/partials/<page>', methods=['GET'])
+def load_partial(page):
+    safe_pages = {"dashboard", "profile", "settings"}  # whitelist allowed partials
+    if page not in safe_pages:
+        abort(404)
+    filepath = f'public/html/admin-{page}.html'
+    if not os.path.exists(filepath):
+        abort(404)
+    return send_file(filepath, mimetype='text/html')
+
 
 if __name__ == "__main__":
     app.run()

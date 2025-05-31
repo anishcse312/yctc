@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+
+  <!-- FontAwesome for icons -->
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales-all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/daygrid/main.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #34CCFF; /* Light blue background */
+    }
+
+    .sidebar {
+      height: 100vh;
+      width: 200px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #2B3A42; /* Dark grey-blue for nav bar */
+      color: white;
+      display: flex;
+      flex-direction: column;
+      padding-top: 20px;
+    }
+
+    .sidebar a {
+      padding: 15px;
+      text-decoration: none;
+      color: white;
+      display: block;
+      transition: background-color 0.3s;
+    }
+
+    .sidebar a:hover {
+      background-color: #3E4F5C; /* Hover color for nav */
+    }
+
+    .topbar {
+      height: 60px;
+      background-color: #0077B6; /* Darker blue for top bar */
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      margin-left: 200px;
+    }
+
+    #main-content {
+      margin-left: 200px;
+      margin-top: 60px;
+      padding: 20px;
+    }
+
+    .widget {
+      background-color: #ffffff; /* White widget background */
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+    }
+
+    .dropdown {
+      background-color: transparent;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <a href="#dashboard">Dashboard</a>
+    <a href="#profile">Profile</a>
+    <a href="#settings">Settings</a>
+    <!-- Additional nav items go here -->
+  </div>
+
+  <div class="topbar">
+    <div>
+      <select class="dropdown" id="sessionSelect"></select>
+    </div>
+    <div id="branchDisplay">Branch: Loading...</div>
+  </div>
+
+  <div id="main-content">
+    <!-- Dynamic content will be injected here -->
+  </div>
+
+  <script>
+    async function loadView(view) {
+      const res = await fetch(`/partials/${view}`);
+      const html = await res.text();
+      document.getElementById("main-content").innerHTML = html;
+      if (window["init" + view.charAt(0).toUpperCase() + view.slice(1)]) {
+        window["init" + view.charAt(0).toUpperCase() + view.slice(1)]();
+      }
+    }
+
+    document.querySelectorAll(".sidebar a").forEach(link => {
+      link.addEventListener("click", async (e) => {
+        e.preventDefault();
+        const view = e.target.getAttribute("href").substring(1);
+        loadView(view);
+      });
+    });
+
+    async function loadSessions() {
+      const res = await fetch('/api/sessions');
+      const sessions = await res.json();
+      const dropdown = document.getElementById('sessionSelect');
+      sessions.forEach(session => {
+        const option = document.createElement('option');
+        option.text = `Session ${session}`;
+        option.value = session;
+        dropdown.add(option);
+      });
+    }
+
+    async function loadBranch() {
+      const res = await fetch('/api/my-branch');
+      const data = await res.json();
+      document.getElementById('branchDisplay').textContent = `Branch: ${data.branch}`;
+    }
+
+    loadSessions();
+    loadBranch();
+    loadView("dashboard"); // Load dashboard by default
+  </script>
+</body>
+</html>

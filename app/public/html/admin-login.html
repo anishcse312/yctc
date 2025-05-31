@@ -70,7 +70,7 @@
 <body>
   <div class="login-container">
     <h2>Admin Login</h2>
-    <form method="POST" action="/admin-login">
+    <form id="loginForm">
       <label for="username">Username</label>
       <input type="text" id="username" name="username" required />
 
@@ -83,5 +83,27 @@
       <a href="/admin-register">Don’t have an account? Register</a>
     </div>
   </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+
+      const response = await fetch('/admin-login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+        window.location.href = '/admin/dashboard';
+      } else {
+        const text = await response.text();
+        alert('Login failed: ' + text);
+      }
+    });
+  </script>
 </body>
 </html>
