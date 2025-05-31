@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Registration</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #2c3e50, #4ca1af);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .register-container {
+      background-color: white;
+      padding: 40px 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 400px;
+    }
+    .register-container h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #333;
+    }
+    .register-container label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #555;
+    }
+    .register-container input[type="text"],
+    .register-container input[type="password"],
+    .register-container input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    .register-container button {
+      width: 100%;
+      padding: 12px;
+      background-color: #4ca1af;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .register-container button:hover {
+      background-color: #357f90;
+    }
+  </style>
+</head>
+<body>
+  <div class="register-container">
+    <h2>Admin Registration</h2>
+    <form method="POST" action="/admin-register" onsubmit="return handleRegistration(event)">
+      <label for="employee_id">Employee ID (6 digits)</label>
+      <input type="number" id="employee_id" name="employee_id" required pattern="\d{6}" minlength="6" maxlength="6" oninput="validateEmployeeID(this)" />
+
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" required />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required />
+
+      <label for="confirm-password">Confirm Password</label>
+      <input type="password" id="confirm-password" name="confirm_password" required />
+
+      <button type="submit">Register</button>
+    </form>
+  </div>
+
+  <script>
+    function validateEmployeeID(input) {
+      if (input.value.length > 6) {
+        input.value = input.value.slice(0, 6);
+      }
+    }
+
+    async function handleRegistration(event) {
+      event.preventDefault();
+
+      const form = event.target;
+      const formData = new FormData(form);
+
+      const employeeID = formData.get("employee_id");
+      if (!/^\d{6}$/.test(employeeID)) {
+        alert("Employee ID must be a 6-digit number.");
+        return false;
+      }
+
+      if (formData.get("password") !== formData.get("confirm_password")) {
+        alert("Passwords do not match.");
+        return false;
+      }
+
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          body: formData,
+        });
+
+        if (response.ok) {
+          alert("Registration successful. Redirecting to login...");
+          window.location.href = "/admin-login";
+        } else {
+          const text = await response.text();
+          alert("Registration failed: " + text);
+        }
+      } catch (error) {
+        alert("Error: " + error.message);
+      }
+
+      return false;
+    }
+  </script>
+</body>
+</html>

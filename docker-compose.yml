@@ -1,0 +1,32 @@
+services:
+  mongo:
+    image: mongo:4.2.5
+    container_name: mongo_db # Give a specific container name
+    volumes:
+      - mongodb_data:/data/db # Persist data
+    restart: unless-stopped
+
+  myapp:
+    container_name: my_app # Give a specific container name
+    build:
+      context: ./app
+    env_file:
+      - .env
+    ports:
+      - "8080:8080" # Expose port 8080 (host:container)
+    environment:
+      - DOCKER_DB=true
+      # Assuming the app connects to mongo service named 'mongo' on default port 27017
+      - DB_HOST=mongo
+      # Make sure your app inside the container listens on port 8080
+      - PORT=8080
+    depends_on:
+      - mongo
+    volumes:
+      - ./logs:/app/logs # Mount logs directory (Old - kept for reference if needed)
+      # Optional: Mount app code for development ease (uncomment if needed)
+      # - .:/app
+    restart: unless-stopped
+
+volumes:
+  mongodb_data: # Define the named volume
