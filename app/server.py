@@ -15,7 +15,8 @@ app.config.update(
     MAIL_PORT=587,
     MAIL_USE_TLS=True,
     MAIL_USERNAME=os.environ.get('MAIL_USERNAME'),
-    MAIL_PASSWORD=os.environ.get('MAIL_PASSWORD')
+    MAIL_PASSWORD=os.environ.get('MAIL_PASSWORD'),
+    MAIL_DEFAULT_SENDER = os.environ.get("MAIL_DEFAULT_SENDER")
 )
 mail = Mail(app)
 # --- Login Required Decorator ---
@@ -134,6 +135,9 @@ def after_req_resp(response):
 
 @app.route('/')
 def send_home():
+    msg = Message("Test", recipients=['banerji.anish@gmail.com'])
+    msg.body = "Hello. This is a test message"
+    mail.send(msg)
     return send_file('public/html/home.html',mimetype='text/html')
 
 
@@ -165,15 +169,18 @@ def adminRegister():
 @app.route('/admin-login',methods=['POST'])
 def adminlogin():
     return admin_login()
+
 @app.route('/otp',methods=['GET'])
 def sendOtp():
-    return send_file('/public/html/otp.html',mimetype='text/html')
+    return send_file('public/html/otp.html',mimetype='text/html')
+
 @app.route('/forgot',methods=['GET'])
 def sendForgot():
-    return send_file('/public/html/forgot.html',mimetype='text/html')
+    return send_file('public/html/forgot.html',mimetype='text/html')
+
 @app.route('/set-new-password',methods=['GET'])
-def sendForgot():
-    return send_file('/public/html/set-new-pass.html',mimetype='text/html')
+def sendNewPass():
+    return send_file('public/html/set-new-pass.html',mimetype='text/html')
 
 @app.route('/admin/dashboard', methods=['GET'])
 @login_required_http
