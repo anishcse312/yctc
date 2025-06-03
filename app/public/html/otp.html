@@ -31,22 +31,19 @@
       color: #333;
     }
 
-    .otp-container label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: bold;
-      color: #555;
+    .otp-input-group {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
     }
 
-    .otp-container input[type="text"] {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 20px;
+    .otp-input-group input {
+      width: 45px;
+      height: 50px;
+      font-size: 24px;
+      text-align: center;
       border: 1px solid #ccc;
       border-radius: 5px;
-      font-size: 16px;
-      text-align: center;
-      letter-spacing: 4px;
     }
 
     .otp-container button {
@@ -80,9 +77,14 @@
   <div class="otp-container">
     <h2>Enter OTP</h2>
     <form id="otpForm">
-      <label for="otp">6-digit OTP</label>
-      <input type="text" id="otp" name="otp" maxlength="6" required pattern="\\d{6}" />
-
+      <div class="otp-input-group">
+        <input type="text" maxlength="1" pattern="[0-9]" required />
+        <input type="text" maxlength="1" pattern="[0-9]" required />
+        <input type="text" maxlength="1" pattern="[0-9]" required />
+        <input type="text" maxlength="1" pattern="[0-9]" required />
+        <input type="text" maxlength="1" pattern="[0-9]" required />
+        <input type="text" maxlength="1" pattern="[0-9]" required />
+      </div>
       <button type="submit">Verify</button>
     </form>
     <div class="back-link">
@@ -91,16 +93,35 @@
   </div>
 
   <script>
+    const inputs = document.querySelectorAll('.otp-input-group input');
+
+    inputs.forEach((input, index) => {
+      input.addEventListener('input', () => {
+        if (input.value.length === 1 && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+      });
+
+      input.addEventListener('keydown', (e) => {
+        if (e.key === "Backspace" && !input.value && index > 0) {
+          inputs[index - 1].focus();
+        }
+      });
+    });
+
     document.getElementById('otpForm').addEventListener('submit', async function (e) {
       e.preventDefault();
 
-      const formData = new FormData(e.target);
-      const data = Object.fromEntries(formData.entries());
+      const otp = Array.from(inputs).map(input => input.value).join('');
+      if (otp.length !== 6) {
+        alert("Please enter all 6 digits.");
+        return;
+      }
 
       const response = await fetch('/otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ otp }),
         credentials: 'include'
       });
 
