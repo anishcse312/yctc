@@ -1,0 +1,115 @@
+<div class="settings-container">
+  <div class="profile-card">
+    <label for="profileUpload" class="profile-pic-wrapper">
+      <img id="profilePicture" class="profile-pic" src="" alt="Profile Picture" />
+      <input type="file" id="profileUpload" accept="image/*" hidden />
+    </label>
+
+    <form id="profileForm">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" />
+
+      <label for="currentPassword">Current Password:</label>
+      <input type="password" id="currentPassword" name="currentPassword" />
+
+      <label for="newPassword">New Password:</label>
+      <input type="password" id="newPassword" name="newPassword" />
+
+      <label for="confirmPassword">Confirm Password:</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" disabled />
+
+      <label for="employeeId">Employee ID:</label>
+      <input type="text" id="employeeId" name="employeeId" disabled />
+
+      <button type="submit">Update Profile</button>
+    </form>
+  </div>
+</div>
+<script src="public/js/settings.js"></script>
+<style>
+  .settings-container {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+  }
+
+  .profile-card {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-pic-wrapper {
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 25px;
+  }
+
+  .profile-pic-wrapper:hover::after {
+    content: 'Click to upload';
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.6);
+    color: white;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  .profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #ddd;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-top: 10px;
+  }
+
+  input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+
+  input[disabled] {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+  }
+
+  button {
+    margin-top: 20px;
+    padding: 10px;
+    border: none;
+    background-color: #0077B6;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #005f8d;
+  }
+</style>
+
+

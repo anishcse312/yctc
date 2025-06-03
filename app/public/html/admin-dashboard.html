@@ -1,74 +1,72 @@
+<div id="userGreeting" class="user-greeting">Loading user...</div>
+
 <div class="dashboard-grid">
-  <div class="widget">
-    <h3>Calendar</h3>
-    <div id="calendar" style="min-height: 400px;"></div>
+  <div class="clock-area">
+    <canvas id="analogClock" width="200" height="200"></canvas>
+    <div id="digitalTime">--:-- --</div>
+    <div id="currentDate">LOADING</div>
   </div>
 
-  <div class="widget">
-    <h3>Current Time</h3>
-    <div id="clock"></div>
-  </div>
-
-  <div class="widget">
-    <h3>Executive Contacts</h3>
-    <ul id="contacts">
-      <li>Loading...</li>
-    </ul>
-  </div>
-
-  <div class="widget">
-    <h3>Help</h3>
-    <button onclick="location.href='/help'" title="Get Assistance">Go to Help Page</button>
+  <div class="calendar-area">
+    <iframe 
+      src="https://calendar.google.com/calendar/embed?src=en-gb.indian%23holiday%40group.v.calendar.google.com&ctz=America%2FNew_York" 
+      style="border:0;" 
+      width="100%" 
+      height="300" 
+      frameborder="0" 
+      scrolling="no">
+    </iframe>
   </div>
 </div>
 
-<!-- Ensure FullCalendar CSS is already included in main page -->
-<!-- FullCalendar plugin needed only once -->
-<script>
-  function initDashboard() {
-    const calendarEl = document.getElementById('calendar');
-    const calendar = new FullCalendar.Calendar(calendarEl, {
-      plugins: [dayGridPlugin],
-      initialView: 'dayGridMonth',
-      height: 300,
-      headerToolbar: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth'
-      },
-      events: [
-        { title: 'Meeting', start: '2025-06-01' },
-        { title: 'Code Review', start: '2025-06-03' },
-        { title: 'Product Launch', start: '2025-06-07', end: '2025-06-10' }
-      ],
-      editable: false,
-      selectable: false,
-    });
-    calendar.render();
-
-    const clock = document.getElementById('clock');
-    function updateClock() {
-      clock.textContent = new Date().toLocaleTimeString();
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-
-    fetch('/api/executive-contacts')
-      .then(res => {
-        if (!res.ok) throw new Error('Failed to load');
-        return res.json();
-      })
-      .then(data => {
-        const list = document.getElementById('contacts');
-        list.innerHTML = '';
-        data.forEach(c => {
-          const li = document.createElement('li');
-          li.textContent = `${c.name}: ${c.phone}`;
-          list.appendChild(li);
-        });
-      })
-      .catch(() => {
-        document.getElementById('contacts').innerHTML = '<li>Error loading contacts</li>';
-      });
+<style>
+  .user-greeting {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
   }
-</script>
+
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 20px;
+    color: #000;
+  }
+
+  @media (max-width: 768px) {
+    .dashboard-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .clock-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #analogClock {
+    border: 2px solid #000;
+    border-radius: 50%;
+    background: #fff;
+    margin-bottom: 15px;
+  }
+
+  #digitalTime {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  #currentDate {
+    font-size: 18px;
+    white-space: pre-line;
+  }
+
+  .calendar-area iframe {
+    width: 100%;
+    height: 100%;
+  }
+</style>

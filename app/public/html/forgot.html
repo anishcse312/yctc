@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Forgot Credentials</title>
   <style>
     body {
       margin: 0;
@@ -15,7 +15,8 @@
       justify-content: center;
       align-items: center;
     }
-    .login-container {
+
+    .forgot-container {
       background-color: white;
       padding: 40px 30px;
       border-radius: 10px;
@@ -23,19 +24,21 @@
       width: 100%;
       max-width: 400px;
     }
-    .login-container h2 {
+
+    .forgot-container h2 {
       text-align: center;
       margin-bottom: 25px;
       color: #333;
     }
-    .login-container label {
+
+    .forgot-container label {
       display: block;
       margin-bottom: 8px;
       font-weight: bold;
       color: #555;
     }
-    .login-container input[type="text"],
-    .login-container input[type="password"] {
+
+    .forgot-container input[type="text"] {
       width: 100%;
       padding: 10px;
       margin-bottom: 20px;
@@ -43,7 +46,8 @@
       border-radius: 5px;
       font-size: 16px;
     }
-    .login-container button {
+
+    .forgot-container button {
       width: 100%;
       padding: 12px;
       background-color: #4ca1af;
@@ -54,56 +58,58 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
-    .login-container button:hover {
+
+    .forgot-container button:hover {
       background-color: #357f90;
     }
-    .login-container .register-link {
+
+    .forgot-container .back-link {
       text-align: center;
       margin-top: 15px;
     }
-    .login-container .register-link a {
+
+    .forgot-container .back-link a {
       color: #4ca1af;
       text-decoration: none;
     }
   </style>
 </head>
 <body>
-  <div class="login-container">
-    <h2>Admin Login</h2>
-    <form id="loginForm">
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username" required />
+  <div class="forgot-container">
+    <h2>Forgot Credentials</h2>
+    <form id="forgotForm">
+      <label for="employeeId">Employee ID</label>
+      <input type="text" id="employeeId" name="employeeId" required />
 
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" required />
+      <label for="lastName">Last Name</label>
+      <input type="text" id="lastName" name="lastName" required />
 
-      <button type="submit">Login</button>
+      <button type="submit">Continue</button>
     </form>
-    <div class="register-link">
-      <a href="/admin-register">Don’t have an account? Register</a><br />
-      <a href="/forgot">Forgot username/password?</a>
+    <div class="back-link">
+      <a href="/admin-login">Back to Login</a>
     </div>
   </div>
 
   <script>
-    document.getElementById('loginForm').addEventListener('submit', async function (e) {
+    document.getElementById('forgotForm').addEventListener('submit', async function (e) {
       e.preventDefault();
 
       const formData = new FormData(e.target);
       const data = Object.fromEntries(formData.entries());
 
-      const response = await fetch('/admin-login', {
+      const response = await fetch('/forgot', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
-        credentials: "include"
+        credentials: 'include'
       });
 
       if (response.ok) {
-        window.location.href = '/admin/dashboard';
+        window.location.href = '/otp';
       } else {
-        const text = await response.text();
-        alert('Login failed: ' + text);
+        const res = await response.json();
+        alert(res.message || 'Request failed');
       }
     });
   </script>

@@ -3,7 +3,17 @@ import hashlib
 from util.database import *
 from flask import make_response, request, jsonify, abort
 import secrets
+import traceback
 
+def find_auth(auth_token:str):
+    auth_token = auth_token.encode('UTF-8')
+    hash = hashlib.sha256(auth_token)
+    user = admins.find_one({"auth_token":hash.hexdigest()},{'_id':0})
+    if user != None:
+        return user
+    else:
+        return None
+    
 def validate_password(password: str):
     special_characters = {'!', '@', '#', '$', '%', '^', '&', '(', ')', '-', '_', '='}
     valid_characters = set('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&()-_=')
@@ -23,11 +33,9 @@ def validate_password(password: str):
 
 def admin_login():
     try:
-        data = (request.get_data()).decode()
-        usr, pas = data.split('&')
-        usr = usr.split('=')[1]
-        pas = pas.split('=')[1]
-
+        data = request.get_json()
+        usr = data.get("username")
+        pas = data.get("password")
         admin_data = admins.find_one({"username":usr})
         if validate_password(pas) == False:
             res = make_response(jsonify({"message":"invalid password"}))
@@ -39,7 +47,7 @@ def admin_login():
             res.headers['X-Content-Type-Options'] = "nosniff"
             res.status_code = 401
             return res
-        if bcrypt.checkpw(pas.encode(),admin_data['password']) == False:
+        if bcrypt.checkpw(pas.encode(),admin_data['password'].encode()) == False:
             res = make_response(jsonify({"message":"invalid password"}))
             res.headers['X-Content-Type-Options'] = "nosniff"
             res.status_code = 401
@@ -50,12 +58,16 @@ def admin_login():
         admins.update_one({'username':usr},{'$set':updated})
         res = make_response(jsonify({"message":"Logged In"}))
         res.headers['X-Content-Type-Options'] = "nosniff"
-        res.status=200
-        res.set_cookie(key="auth_token",value=auth, max_age=10000, path="/admin", httponly=True)
+        res.headers['Content-Type']="applicaiton/json"
+        res.status_code=200
+        res.set_cookie(key="auth_token",value=auth, max_age=10000, httponly=True)
         return res
-    except:
+    except Exception as e:
         print("Fail")
-    return make_response(jsonify({"message":"Internal Server Error"}))
+        res = make_response(jsonify({"message":str(e)}))
+        res.status_code=400
+        res.headers['X-Content-Type-Options'] = "nosniff"
+        return res
 
 def adminReg():
     form = request.form
@@ -63,7 +75,7 @@ def adminReg():
     emp_id = form.get("employee_id")
     username = form.get("username")
 
-    admin_info = admins.find_one({'id':emp_id})
+    admin_info = admins.find_one({'employeeId':emp_id})
     if admin_info == None:
         res = make_response(jsonify({"message":"invalid employee id"}))
         res.headers['X-Content-Type-Options'] = "nosniff"
@@ -74,12 +86,12 @@ def adminReg():
         res.headers['X-Content-Type-Options'] = "nosniff"
         res.status_code = 401
         return res
-    if admin_info.get('username') != "":
+    if admin_info.get('username') != "" and admin_info.get('username') != None:
         res = make_response(jsonify({"message":"user already registered"}))
         res.headers['X-Content-Type-Options'] = "nosniff"
         res.status_code = 401
         return res
-    usernames = [doc["username"] for doc in admins.find({}, {"username": 1, "_id": 0})]
+    usernames = [doc.get("username") for doc in admins.find({}, {"username": 1, "_id": 0})]
     if username in usernames:
         res = make_response(jsonify({"message":"username already taken"}))
         res.headers['X-Content-Type-Options'] = "nosniff"
@@ -88,9 +100,49 @@ def adminReg():
     hashed_pas = bcrypt.hashpw(password.encode(),bcrypt.gensalt())
     hashed_pas = hashed_pas.decode()
     update_fields = {"username":username, "password":hashed_pas}
-    admins.update_one({"id":emp_id},{'$set':update_fields})
+    admins.update_one({"employeeId":emp_id},{'$set':update_fields})
     res = make_response(jsonify({"message":"user registered successfully"}))
     res.headers['X-Content-Type-Options'] = "nosniff"
     res.status_code = 200
     return res
+
+def logout():
+    auth_token = request.cookies.get('auth_token')
+    user = find_auth(auth_token)
+    if user == None:
+        res = make_response(jsonify({"message":"user not logged in"}))
+        res.headers['X-Content-Type-Options'] = "nosniff"
+        res.status_code = 401
+        return res
     
+    res = make_response(jsonify({"message":"logout successfull"}))
+    res.headers['X-Content-Type-Options'] = "nosniff"
+    res.status_code = 200
+    res.set_cookie(key="auth_token",value=auth_token,max_age=0)
+    res.set_cookie(key="branch",max_age=0)
+    res.set_cookie(key="session",max_age=0)
+    updated = {"auth_token":""}
+    admins.update_one({"auth_token":auth_token},{"$set":updated})
+    return res
+
+def forgot():
+    data = request.get_json()
+    empid = data.get('employeeId')
+    last = data.get('lastName')
+
+    user = admins.find_one({'employeeId':empid},{'_id':0})
+    if user == None:
+        res = make_response(jsonify({"message":"employee id not found"}))
+        res.headers['X-Content-Type-Options'] = "nosniff"
+        res.status_code = 404
+        return res
+    if user.get('lastName') != last:
+        res = make_response(jsonify({'message':'inavlid credentials'}))
+        res.headers['X-Content-Type-Options'] = "nosniff"
+        res.status_code = 401
+        return res
+    return True, user
+def otp():
+    pass
+def set_new_pass():
+    pass

@@ -13,6 +13,7 @@ else:
 db = mongo_client['yctcdb']
 admins = db['admins']
 calendar_collection = db["calendar_events"]
+sessions = db['sessions']
 def createNewCollection(name: str):
     if name in db.list_collection_names():
         return False

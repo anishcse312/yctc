@@ -1,14 +1,47 @@
-from flask import Flask, send_file, make_response, request, render_template
+from flask import Flask, send_file, make_response, request, render_template, redirect, url_for
+from functools import wraps
 from util.helper import *
 from util.authentication import *
 from datetime import datetime
 from util.database import *
+from bson.objectid import ObjectId
+from util.api import *
+from flask_mail import Mail, Message
+import os
 
 app = Flask(__name__)
+app.config.update(
+    MAIL_SERVER='smtp.gmail.com',
+    MAIL_PORT=587,
+    MAIL_USE_TLS=True,
+    MAIL_USERNAME=os.environ.get('MAIL_USERNAME'),
+    MAIL_PASSWORD=os.environ.get('MAIL_PASSWORD')
+)
+mail = Mail(app)
+# --- Login Required Decorator ---
+def login_required_http(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        token = request.cookies.get('auth_token')
+        user = find_auth(token) if token else None
+        if user is None:
+            if request.path.startswith('/api/'):
+                 return jsonify({"message": "Authentication required"}), 401
+            else:
+                 return redirect(url_for('adminlogin', next=request.url))
+        # Inject user into request context if needed later (optional)
+        # from flask import g
+        # g.user = user
+        return f(*args, **kwargs)
+    return decorated_function
+# --- End Decorator ---
+
 
 LOGS_DIR = os.path.join(os.path.dirname(__file__), 'logs')
 LOG_FILE = os.path.join(LOGS_DIR, 'requests.log')
 FULL_LOG_FILE = os.path.join(LOGS_DIR, 'server.log')
+
+
 
 
 @app.before_request
@@ -101,9 +134,12 @@ def after_req_resp(response):
 
 @app.route('/')
 def send_home():
-    admins.insert_one({"id":"123456","username":"","password":"","auth_token":""})
     return send_file('public/html/home.html',mimetype='text/html')
 
+
+@app.route('/public/js/<filename>', methods = ['GET'])
+def sendJS(filename):
+    return send_file('public/js/'+filename, mimetype='text/javascript')
 @app.route('/public/images/<filename>')
 def send_img(filename):
     mimetype = getmimetype(filename)
@@ -113,9 +149,14 @@ def send_img(filename):
 def send_adminLogin():
     return send_file('public/html/admin-login.html',mimetype='text/html')
 
+
+
 @app.route('/admin-register',methods=['GET'])
 def send_adminReg():
     return send_file('public/html/admin-reg.html',mimetype='text/html')
+
+
+
 
 @app.route('/admin-register', methods=['POST'])
 def adminRegister():
@@ -124,21 +165,51 @@ def adminRegister():
 @app.route('/admin-login',methods=['POST'])
 def adminlogin():
     return admin_login()
-
+@app.route('/otp',methods=['GET'])
+def sendOtp():
+    return send_file('/public/html/otp.html',mimetype='text/html')
+@app.route('/forgot',methods=['GET'])
+def sendForgot():
+    return send_file('/public/html/forgot.html',mimetype='text/html')
+@app.route('/set-new-password',methods=['GET'])
+def sendForgot():
+    return send_file('/public/html/set-new-pass.html',mimetype='text/html')
 
 @app.route('/admin/dashboard', methods=['GET'])
+@login_required_http
 def admin_dashboard():
     return send_file('public/html/template.html', mimetype='text/html')
 
+app.add_url_rule('/forgot','forgot',forgot,methods=['POST'])
+@app.route('/forgot',methods=['POST'])
+def serveForgot():
+    ret = forgot()
+    if ret != True:
+        return ret
+    
+app.add_url_rule('/otp','otp',otp,methods=['POST'])
+app.add_url_rule('/set-new-password','new-pass',set_new_pass,methods=['POST'])
+app.add_url_rule('/api/sessions',"getSessions",login_required_http(getSessions),methods=['GET'])
+app.add_url_rule('/api/my-branch','getBranch',login_required_http(getBranch),methods=['GET'])
+app.add_url_rule('/logout','logout',login_required_http(logout),methods=['POST'])
+
+@app.route('/api/me',methods = ['GET'])
+def me():
+    return getMe(False)
+
+
+
 @app.route('/partials/<page>', methods=['GET'])
 def load_partial(page):
-    safe_pages = {"dashboard", "profile", "settings"}  # whitelist allowed partials
+    safe_pages = {"dashboard", "settings"}  # whitelist allowed partials
     if page not in safe_pages:
         abort(404)
     filepath = f'public/html/admin-{page}.html'
     if not os.path.exists(filepath):
         abort(404)
     return send_file(filepath, mimetype='text/html')
+
+
 
 
 if __name__ == "__main__":

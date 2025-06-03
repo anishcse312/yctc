@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OTP Verification</title>
   <style>
     body {
       margin: 0;
@@ -15,7 +15,8 @@
       justify-content: center;
       align-items: center;
     }
-    .login-container {
+
+    .otp-container {
       background-color: white;
       padding: 40px 30px;
       border-radius: 10px;
@@ -23,27 +24,32 @@
       width: 100%;
       max-width: 400px;
     }
-    .login-container h2 {
+
+    .otp-container h2 {
       text-align: center;
       margin-bottom: 25px;
       color: #333;
     }
-    .login-container label {
+
+    .otp-container label {
       display: block;
       margin-bottom: 8px;
       font-weight: bold;
       color: #555;
     }
-    .login-container input[type="text"],
-    .login-container input[type="password"] {
+
+    .otp-container input[type="text"] {
       width: 100%;
       padding: 10px;
       margin-bottom: 20px;
       border: 1px solid #ccc;
       border-radius: 5px;
       font-size: 16px;
+      text-align: center;
+      letter-spacing: 4px;
     }
-    .login-container button {
+
+    .otp-container button {
       width: 100%;
       padding: 12px;
       background-color: #4ca1af;
@@ -54,56 +60,55 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
-    .login-container button:hover {
+
+    .otp-container button:hover {
       background-color: #357f90;
     }
-    .login-container .register-link {
+
+    .otp-container .back-link {
       text-align: center;
       margin-top: 15px;
     }
-    .login-container .register-link a {
+
+    .otp-container .back-link a {
       color: #4ca1af;
       text-decoration: none;
     }
   </style>
 </head>
 <body>
-  <div class="login-container">
-    <h2>Admin Login</h2>
-    <form id="loginForm">
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username" required />
+  <div class="otp-container">
+    <h2>Enter OTP</h2>
+    <form id="otpForm">
+      <label for="otp">6-digit OTP</label>
+      <input type="text" id="otp" name="otp" maxlength="6" required pattern="\\d{6}" />
 
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" required />
-
-      <button type="submit">Login</button>
+      <button type="submit">Verify</button>
     </form>
-    <div class="register-link">
-      <a href="/admin-register">Don’t have an account? Register</a><br />
-      <a href="/forgot">Forgot username/password?</a>
+    <div class="back-link">
+      <a href="/forgot">Back</a>
     </div>
   </div>
 
   <script>
-    document.getElementById('loginForm').addEventListener('submit', async function (e) {
+    document.getElementById('otpForm').addEventListener('submit', async function (e) {
       e.preventDefault();
 
       const formData = new FormData(e.target);
       const data = Object.fromEntries(formData.entries());
 
-      const response = await fetch('/admin-login', {
+      const response = await fetch('/otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
-        credentials: "include"
+        credentials: 'include'
       });
 
       if (response.ok) {
-        window.location.href = '/admin/dashboard';
+        window.location.href = '/set-new-password';
       } else {
-        const text = await response.text();
-        alert('Login failed: ' + text);
+        const res = await response.json();
+        alert(res.message || 'OTP verification failed');
       }
     });
   </script>

@@ -5,16 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Dashboard</title>
 
-  <!-- FontAwesome for icons -->
-  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales-all.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/daygrid/main.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #34CCFF; /* Light blue background */
+      background-color: #34CCFF;
     }
 
     .sidebar {
@@ -23,7 +19,7 @@
       position: fixed;
       top: 0;
       left: 0;
-      background-color: #2B3A42; /* Dark grey-blue for nav bar */
+      background-color: #2B3A42;
       color: white;
       display: flex;
       flex-direction: column;
@@ -39,31 +35,33 @@
     }
 
     .sidebar a:hover {
-      background-color: #3E4F5C; /* Hover color for nav */
+      background-color: #3E4F5C;
     }
 
     .topbar {
       height: 60px;
-      background-color: #0077B6; /* Darker blue for top bar */
+      background-color: #0077B6;
       color: white;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 20px;
+      padding: 0 40px;
       margin-left: 200px;
+      position: relative;
+    }
+
+    .topbar-title {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-weight: bold;
+      font-size: 20px;
     }
 
     #main-content {
       margin-left: 200px;
       margin-top: 60px;
       padding: 20px;
-    }
-
-    .widget {
-      background-color: #ffffff; /* White widget background */
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      padding: 15px;
     }
 
     .dropdown {
@@ -78,61 +76,155 @@
 <body>
   <div class="sidebar">
     <a href="#dashboard">Dashboard</a>
-    <a href="#profile">Profile</a>
     <a href="#settings">Settings</a>
-    <!-- Additional nav items go here -->
+    <a href="#logout" id="logoutLink">Logout</a>
   </div>
 
   <div class="topbar">
     <div>
+      Session:
       <select class="dropdown" id="sessionSelect"></select>
     </div>
+    <div class="topbar-title" onclick="location.href='/'">YCTC</div>
     <div id="branchDisplay">Branch: Loading...</div>
   </div>
 
   <div id="main-content">
-    <!-- Dynamic content will be injected here -->
+    <!-- Dynamic content loads here -->
   </div>
 
-  <script>
-    async function loadView(view) {
-      const res = await fetch(`/partials/${view}`);
-      const html = await res.text();
-      document.getElementById("main-content").innerHTML = html;
-      if (window["init" + view.charAt(0).toUpperCase() + view.slice(1)]) {
-        window["init" + view.charAt(0).toUpperCase() + view.slice(1)]();
-      }
-    }
+  <!-- Dynamic module loader -->
+  <script type="module">
+  const moduleMap = {
+    dashboard: '/public/js/dashboard.js',
+    settings: '/public/js/settings.js',
+  };
 
-    document.querySelectorAll(".sidebar a").forEach(link => {
-      link.addEventListener("click", async (e) => {
-        e.preventDefault();
-        const view = e.target.getAttribute("href").substring(1);
-        loadView(view);
-      });
+  function setCookie(name, value, days = 7) {
+    const expires = new Date(Date.now() + days * 86400000).toUTCString();
+    document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
+  }
+
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+  }
+
+  async function loadView(view) {
+    const res = await fetch(`/partials/${view}`);
+    const html = await res.text();
+    document.getElementById("main-content").innerHTML = html;
+
+    if (moduleMap[view]) {
+      const module = await import(moduleMap[view]);
+      const initFn = module["init" + view.charAt(0).toUpperCase() + view.slice(1)];
+      if (typeof initFn === "function") initFn();
+    }
+  }
+
+  document.querySelectorAll(".sidebar a").forEach(link => {
+    link.addEventListener("click", async (e) => {
+      e.preventDefault();
+      const view = e.target.getAttribute("href").substring(1);
+      await loadView(view);
+    });
+  });
+
+  async function loadSessions() {
+  const res = await fetch('/api/sessions');
+  const sessions = await res.json();
+  const dropdown = document.getElementById('sessionSelect');
+  const cookieValue = getCookie("session");
+
+  let selectedFound = false;
+  sessions.forEach(session => {
+    const option = document.createElement('option');
+    option.text = `${session}`;
+    option.value = session;
+    if (cookieValue === session || String(cookieValue) === String(session)) {
+      option.selected = true;
+      selectedFound = true;
+    }
+    dropdown.add(option);
+  });
+
+  // Fallback: select the first one if no match in cookie
+  if (!selectedFound && sessions.length > 0) {
+    dropdown.value = sessions[0];
+    setCookie("session", sessions[0]);
+  }
+
+  dropdown.addEventListener('change', () => {
+    setCookie("session", dropdown.value);
+  });
+}
+
+
+  async function loadBranch() {
+  const res = await fetch('/api/my-branch');
+  const data = await res.json();
+  const container = document.getElementById('branchDisplay');
+  const cookieValue = getCookie("branch");
+
+  if (Array.isArray(data.branch)) {
+    const select = document.createElement('select');
+    select.className = "dropdown";
+    let selectedFound = false;
+
+    data.branch.forEach(branch => {
+      const option = document.createElement('option');
+      option.text = branch;
+      option.value = branch;
+      if (cookieValue === branch) {
+        option.selected = true;
+        selectedFound = true;
+      }
+      select.add(option);
     });
 
-    async function loadSessions() {
-      const res = await fetch('/api/sessions');
-      const sessions = await res.json();
-      const dropdown = document.getElementById('sessionSelect');
-      sessions.forEach(session => {
-        const option = document.createElement('option');
-        option.text = `Session ${session}`;
-        option.value = session;
-        dropdown.add(option);
-      });
+    if (!selectedFound && data.branch.length > 0) {
+      select.value = data.branch[0];
+      setCookie("branch", data.branch[0]);
     }
 
-    async function loadBranch() {
-      const res = await fetch('/api/my-branch');
-      const data = await res.json();
-      document.getElementById('branchDisplay').textContent = `Branch: ${data.branch}`;
-    }
+    select.addEventListener('change', () => {
+      setCookie("branch", select.value);
+    });
 
-    loadSessions();
-    loadBranch();
-    loadView("dashboard"); // Load dashboard by default
-  </script>
+    container.innerHTML = '';
+    container.appendChild(select);
+  } else {
+    container.textContent = data.branch;
+    setCookie("branch", data.branch);
+  }
+}
+
+
+  document.getElementById("logoutLink").addEventListener("click", async (e) => {
+  e.preventDefault();
+  try {
+    const res = await fetch("/logout", {
+      method: "POST",
+      credentials: "include"
+    });
+
+    const data = await res.json();
+
+    if (res.status === 200) {
+      window.location.href = "/";
+    } else {
+      alert(data.message || "Logout failed");
+    }
+  } catch (err) {
+    alert("Network error while logging out.");
+  }
+  });
+
+  loadSessions();
+  loadBranch();
+  loadView("dashboard");
+</script>
+
 </body>
 </html>
