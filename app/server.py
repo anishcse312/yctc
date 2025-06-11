@@ -135,9 +135,9 @@ def after_req_resp(response):
 
 @app.route('/')
 def send_home():
-    msg = Message("Test", recipients=['banerji.anish@gmail.com'])
-    msg.body = "Hello. This is a test message"
-    mail.send(msg)
+    #msg = Message("Test", recipients=['banerji.anish@gmail.com'])
+    #msg.body = "Hello. This is a test message"
+    #mail.send(msg)
     return send_file('public/html/home.html',mimetype='text/html')
 
 
@@ -204,16 +204,20 @@ app.add_url_rule('/logout','logout',login_required_http(logout),methods=['POST']
 def me():
     return getMe(False)
 
+@app.route('/searchStudent', methods = ['POST'])
+def searchstu():
+    data = request.get_json()
+    regNo = data.get("regNo")
+    return findStudent(regNo=regNo)
 
 
 @app.route('/partials/<page>', methods=['GET'])
 def load_partial(page):
-    safe_pages = {"dashboard", "settings"}  # whitelist allowed partials
-    if page not in safe_pages:
-        abort(404)
-    filepath = f'public/html/admin-{page}.html'
+    filepath = f'public/html/partials/{page}.html'
     if not os.path.exists(filepath):
-        abort(404)
+        filepath = f'public/html/admin-{page}.html'
+        if not os.path.exists(filepath):
+            abort(404)
     return send_file(filepath, mimetype='text/html')
 
 

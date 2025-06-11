@@ -1,0 +1,40 @@
+<div style="text-align: center; margin-top: 30px">
+  <h2>Search All Students</h2>
+  <form id="searchForm" style="margin-top: 20px">
+    <div
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        flex-wrap: wrap;
+      "
+    >
+      <span style="font-size: 16px">YS-N24/</span>
+      <select
+        id="sessionSelect"
+        required
+        style="padding: 10px; font-size: 16px; width: 100px"
+      ></select>
+      <span>-</span>
+      <input
+        type="text"
+        id="regNumber"
+        placeholder="Registration Number"
+        required
+        style="padding: 10px; font-size: 16px; width: 150px"
+      />
+      <span>/</span>
+      <span id="sessionYear" style="font-size: 16px">----</span>
+    </div>
+  </form>
+</div>
+<div
+  id="studentDetails"
+  style="
+    margin: 40px auto;
+    max-width: 1000px;
+    font-family: monospace;
+    white-space: pre-wrap;
+  "
+></div>

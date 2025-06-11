@@ -4,12 +4,11 @@ from flask import make_response, jsonify
 
 
 def getSessions():
-    allSessions = sessions.find_one()
-    c=0
-    for i in allSessions:
-        c=c+1
-    ret = [i for i in range(1,c+1)]
-    res = make_response(jsonify(ret))
+    with open('util/session.json','r') as f:
+        data = json.load(f)
+    sessions = data.get('sessions')
+    sessions.sort(key=lambda x: x[0])
+    res = make_response(jsonify(sessions))
     res.headers['X-Content-Type-Options'] = "nosniff"
     res.status_code=200
     return res
