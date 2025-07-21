@@ -1,0 +1,6 @@
+batchcode,coursecode,courseid,batchday,batchtime,faculty,totalseat,alloted,classstart,terget,remarks,session,ses_half,centre,DELETEd,USER
+45001,45,ADITA SEM-III,TUE-FRI,06:00P-08:00P,,24.0,20.0,24/06/2025,0.0,,82,A,N24,,cic
+43001,43,ADFAS SEM-III,WED-SAT,02:00P-04:00P,,24.0,6.0,25/06/2025,0.0,,82,A,N24,,cic
+33001,33,ADFAS SEM-II,TUE-FRI,12:00P-02:00P,,24.0,12.0,24/06/2025,0.0,,82,A,N24,,toyeba
+35001,35,ADITA SEM-II,WED-SAT,08:00A-10:00A,,24.0,10.0,21/06/2025,0.0,,82,A,N24,,cic
+35002,35,ADITA SEM-II,MON-THU,04:00P-06:00P,,24.0,13.0,23/06/2025,0.0,,82,A,N24,,cic

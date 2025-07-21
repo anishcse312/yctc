@@ -835,3 +835,7 @@
 [06-11-2025 15:16:21]: 172.19.0.1 (anishban) GET /partials/searchAllStudents -> 304
 [06-11-2025 15:16:21]: 172.19.0.1 (anishban) GET /public/js/searchAllStudents.js -> 304
 [06-11-2025 15:16:21]: 172.19.0.1 (anishban) GET /api/sessions -> 200
+[06-15-2025 22:13:20]: 172.19.0.1 GET / -> 200
+[06-15-2025 22:13:20]: 172.19.0.1 GET /public/images/dpsmeg.jpg -> 200
+[06-15-2025 22:13:21]: 172.19.0.1 GET /favicon.ico -> 404
+[06-15-2025 22:13:22]: 172.19.0.1 GET /admin-login -> 200

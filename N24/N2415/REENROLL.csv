@@ -1,0 +1,4 @@
+reg_no,batchcode,lateral,course_ap1,course_ap2,course_ap3,n_reg_no_1,course_ad1,batch_no_1,n_reg_no_2,course_ad2,batch_no_2,n_reg_no_3,course_ad3,batch_no_3,Session,ses_half,already_dip,Centre,USER
+YS-N24/15-1500884/2006,27,L,DCHM,,,YS-N24/36-1500884/2013,DCHM,37001,,,,,,,36,A,,N24,PROMITA
+YS-N24/15-1500464/2006,25,L,CDTP(LAT),,,YS-N24/51-5100717/2017,CDTP(LAT),22051,,,,,,,51,A,,N24,saheli
+YS-N24/15-1501119/2006,25,L,ADITA,,,YS-N24/72-1501119/2023,ADITA,35005,,,,,,,72,A,,N24,PROMITA

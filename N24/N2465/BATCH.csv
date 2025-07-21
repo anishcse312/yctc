@@ -1,0 +1,6 @@
+batchcode,coursecode,courseid,batchday,batchtime,faculty,totalseat,alloted,classstart,terget,remarks,session,ses_half,centre,DELETEd,USER
+25051,25,ADITA SEM-I,MON-THU,04:00P-06:00P,RAKHI DAS,31.0,30.0,18/01/2021,22.0,,65,A,N24,,cic
+25052,25,ADITA SEM-I,WED-SAT,10:00A-12:00P,RAKHI DAS,33.0,33.0,20/01/2021,25.0,,65,A,N24,,cic
+23051,23,ADFAS SEM-I,MON-THU,10:00A-12:00P,Lakshmi Narayan Ghosh,32.0,32.0,18/01/2021,26.0,,65,A,N24,,cic
+25053,25,ADITA SEM-I,TUE-FRI,12:00P-02:00P,RAKHI DAS,30.0,30.0,22/01/2021,22.0,,65,A,N24,,cic
+25054,25,ADITA SEM-I,TUE-FRI,04:00P-06:00P,Lakshmi Narayan Ghosh,16.0,16.0,02/02/2021,12.0,,65,A,N24,,saheli
