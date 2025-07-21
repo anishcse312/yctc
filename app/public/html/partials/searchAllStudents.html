@@ -1,34 +1,33 @@
-<div style="text-align: center; margin-top: 30px">
-  <h2>Search All Students</h2>
-  <form id="searchForm" style="margin-top: 20px">
-    <div
-      style="
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
-        flex-wrap: wrap;
-      "
-    >
-      <span style="font-size: 16px">YS-N24/</span>
-      <select
-        id="sessionSelect"
-        required
-        style="padding: 10px; font-size: 16px; width: 100px"
-      ></select>
-      <span>-</span>
-      <input
-        type="text"
-        id="regNumber"
-        placeholder="Registration Number"
-        required
-        style="padding: 10px; font-size: 16px; width: 150px"
-      />
-      <span>/</span>
-      <span id="sessionYear" style="font-size: 16px">----</span>
-    </div>
-  </form>
-</div>
+<h2 style="text-align: center; margin-top: 30px">Search All Students</h2>
+
+<form id="searchForm" style="text-align: center; margin-top: 20px">
+  <div style="margin-bottom: 10px">
+    <label for="regNumber" style="font-size: 18px">YS-N24/</label>
+    <input
+      type="text"
+      id="regNumber"
+      placeholder="Enter Registration Number"
+      style="padding: 10px; font-size: 16px; width: 220px"
+    />
+  </div>
+
+  <div style="margin-bottom: 10px">
+    <input
+      type="text"
+      id="studentName"
+      placeholder="Or Enter Student Name"
+      style="padding: 10px; font-size: 16px; width: 280px"
+    />
+  </div>
+
+  <button
+    type="submit"
+    style="padding: 10px 20px; font-size: 16px; cursor: pointer"
+  >
+    Search
+  </button>
+</form>
+
 <div
   id="studentDetails"
   style="
@@ -36,5 +35,9 @@
     max-width: 1000px;
     font-family: monospace;
     white-space: pre-wrap;
+    text-align: left;
+    background-color: #ffffffcc;
+    padding: 20px;
+    border-radius: 8px;
   "
 ></div>

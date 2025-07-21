@@ -2,6 +2,7 @@ from flask import Flask, send_file, make_response, request, render_template, red
 from functools import wraps
 from util.helper import *
 from util.authentication import *
+from util.search import *
 from datetime import datetime
 from util.database import *
 from bson.objectid import ObjectId
@@ -204,12 +205,17 @@ app.add_url_rule('/logout','logout',login_required_http(logout),methods=['POST']
 def me():
     return getMe(False)
 
-@app.route('/searchStudent', methods = ['POST'])
-def searchstu():
+@app.route('/search/by-name', methods = ['POST'])
+def searchname():
     data = request.get_json()
-    regNo = data.get("regNo")
-    return findStudent(regNo=regNo)
+    name = data.get("name")
+    return search_by_name(name=name)
 
+@app.route('/search/by-reg', methods = ['POST'])
+def searchregno():
+    data = request.get_json()
+    regno = data.get("registrationNumber")
+    return search_by_reg(regno)
 
 @app.route('/partials/<page>', methods=['GET'])
 def load_partial(page):
