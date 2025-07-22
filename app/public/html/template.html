@@ -9,6 +9,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <style>
+      /* [UNCHANGED STYLES] */
       body {
         margin: 0;
         font-family: Arial, sans-serif;
@@ -116,6 +117,7 @@
       <a href="#settings">Settings</a>
       <a href="#logout" id="logoutLink">Logout</a>
     </div>
+
     <div class="topbar">
       <div>
         Session:
@@ -124,7 +126,9 @@
       <div class="topbar-title" onclick="location.href='/'">YCTC</div>
       <div id="branchDisplay">Branch: Loading...</div>
     </div>
+
     <div id="main-content"></div>
+
     <script type="module">
       const moduleMap = {
         dashboard: "/public/js/dashboard.js",
@@ -153,6 +157,7 @@
 
         const sessionDropdown = document.getElementById("sessionSelect");
         sessionDropdown.disabled = false;
+
         if (moduleMap[view]) {
           const module = await import(moduleMap[view]);
           const initFn =
@@ -161,12 +166,24 @@
         }
       }
 
+      function handleNavigation(view, push = true) {
+        loadView(view);
+        if (push) {
+          history.pushState({ view }, "", `#${view}`);
+        }
+      }
+
       document.querySelectorAll(".sidebar a, .sub-link").forEach((link) => {
-        link.addEventListener("click", async (e) => {
+        link.addEventListener("click", (e) => {
           e.preventDefault();
           const view = e.target.getAttribute("href").substring(1);
-          await loadView(view);
+          handleNavigation(view);
         });
+      });
+
+      window.addEventListener("popstate", (event) => {
+        const view = (event.state && event.state.view) || "dashboard";
+        handleNavigation(view, false);
       });
 
       async function loadSessions() {
@@ -246,9 +263,7 @@
               method: "POST",
               credentials: "include",
             });
-
             const data = await res.json();
-
             if (res.status === 200) {
               window.location.href = "/";
             } else {
@@ -271,9 +286,13 @@
           arrow.style.transform = isHidden ? "rotate(90deg)" : "rotate(0deg)";
         });
 
+      // Initial load
       loadSessions();
       loadBranch();
-      loadView("dashboard");
+      const initialView = location.hash
+        ? location.hash.substring(1)
+        : "dashboard";
+      handleNavigation(initialView, false);
     </script>
   </body>
 </html>

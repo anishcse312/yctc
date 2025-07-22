@@ -940,3 +940,142 @@
 [07-21-2025 14:16:07]: 172.19.0.1 (anishban) POST /search/by-name -> 200
 [07-21-2025 14:17:26]: 172.19.0.1 (anishban) POST /search/by-name -> 200
 [07-21-2025 14:17:43]: 172.19.0.1 (anishban) POST /search/by-reg -> 500
+[07-22-2025 07:43:16]: 172.19.0.1 GET / -> 304
+[07-22-2025 07:43:16]: 172.19.0.1 GET /public/images/dpsmeg.jpg -> 304
+[07-22-2025 07:43:16]: 172.19.0.1 GET /favicon.ico -> 404
+[07-22-2025 07:43:18]: 172.19.0.1 GET /admin-login -> 200
+[07-22-2025 07:43:26]: 172.19.0.1 POST /admin-login -> 200
+[07-22-2025 07:43:26]: 172.19.0.1 (anishban) GET /admin/dashboard -> 200
+[07-22-2025 07:43:26]: 172.19.0.1 (anishban) GET /api/sessions -> 200
+[07-22-2025 07:43:26]: 172.19.0.1 (anishban) GET /partials/dashboard -> 304
+[07-22-2025 07:43:26]: 172.19.0.1 (anishban) GET /api/my-branch -> 200
+[07-22-2025 07:43:26]: 172.19.0.1 (anishban) GET /public/js/dashboard.js -> 304
+[07-22-2025 07:43:26]: 172.19.0.1 (anishban) GET /api/me -> 200
+[07-22-2025 07:43:30]: 172.19.0.1 (anishban) GET /partials/settings -> 200
+[07-22-2025 07:43:30]: 172.19.0.1 (anishban) GET /public/js/settings.js -> 200
+[07-22-2025 07:43:30]: 172.19.0.1 (anishban) GET /api/me -> 200
+[07-22-2025 07:43:30]: 172.19.0.1 (anishban) GET /static/default-profile.png -> 404
+[07-22-2025 07:43:34]: 172.19.0.1 (anishban) GET /admin/dashboard -> 304
+[07-22-2025 07:43:34]: 172.19.0.1 (anishban) GET /api/sessions -> 200
+[07-22-2025 07:43:34]: 172.19.0.1 (anishban) GET /api/my-branch[07-22-2025 07:43:34]: 172.19.0.1 (anishban) GET /partials/settings -> 304
+ -> 200
+[07-22-2025 07:43:34]: 172.19.0.1 (anishban) GET /public/js/settings.js -> 304
+[07-22-2025 07:43:34]: 172.19.0.1 (anishban) GET /api/me -> 200
+[07-22-2025 07:43:34]: 172.19.0.1 (anishban) GET /static/default-profile.png -> 404
+[07-22-2025 07:43:36]: 172.19.0.1 (anishban) GET /partials/searchAllStudents -> 304
+[07-22-2025 07:43:36]: 172.19.0.1 (anishban) GET /public/js/searchAllStudents.js -> 200
+[07-22-2025 07:43:38]: 172.19.0.1 (anishban) GET /admin/dashboard -> 304
+[07-22-2025 07:43:38]: 172.19.0.1 (anishban) GET /api/sessions -> 200
+[07-22-2025 07:43:38]: 172.19.0.1 (anishban) GET /api/my-branch[07-22-2025 07:43:38]: 172.19.0.1 (anishban) GET /partials/searchAllStudents -> 304
+ -> 200
+[07-22-2025 07:43:38]: 172.19.0.1 (anishban) GET /public/js/searchAllStudents.js -> 304
+[07-22-2025 07:43:54]: 172.19.0.1 (anishban) POST /search/by-name -> 200
+[07-22-2025 07:44:01]: 172.19.0.1 (anishban) POST /search/by-name -> 200
+[07-22-2025 07:44:12]: 172.19.0.1 (anishban) POST /search/by-name -> 200
+[07-22-2025 07:44:22]: 172.19.0.1 (anishban) POST /search/by-name -> 200
+[07-22-2025 07:44:27]: 172.19.0.1 (anishban) POST /search/by-name -> 200
+[07-22-2025 07:45:03]: 172.19.0.1 (anishban) POST /search/by-name -> 200
+[07-22-2025 07:48:28]: 172.19.0.1 (anishban) GET /admin/dashboard -> 304
+[07-22-2025 07:48:28]: 172.19.0.1 (anishban) GET /api/sessions -> 200
+[07-22-2025 07:48:29]: 172.19.0.1 (anishban) GET /api/my-branch[07-22-2025 07:48:29]: 172.19.0.1 (anishban) GET /partials/searchAllStudents -> 304
+ -> 200
+[07-22-2025 07:48:29]: 172.19.0.1 (anishban) GET /public/js/searchAllStudents.js -> 304
+[07-22-2025 07:48:36]: 172.19.0.1 (anishban) POST /search/by-name -> 200
+[07-22-2025 07:48:50]: 172.19.0.1 (anishban) GET /admin/dashboard -> 304
+[07-22-2025 07:48:50]: 172.19.0.1 (anishban) GET /api/sessions -> 200
+[07-22-2025 07:48:50]: 172.19.0.1 (anishban) GET /api/my-branch[07-22-2025 07:48:50]: 172.19.0.1 (anishban) GET /partials/searchAllStudents -> 304
+ -> 200
+[07-22-2025 07:48:50]: 172.19.0.1 (anishban) GET /public/js/searchAllStudents.js -> 304
+[07-22-2025 07:48:59]: 172.19.0.1 (anishban) POST /search/by-name -> 200
+[07-22-2025 07:49:08]: 172.19.0.1 (anishban) GET /admin/dashboard -> 304
+[07-22-2025 07:49:09]: 172.19.0.1 (anishban) GET /api/sessions -> 200
+[07-22-2025 07:49:09]: 172.19.0.1 (anishban) GET /api/my-branch[07-22-2025 07:49:09]: 172.19.0.1 (anishban) GET /partials/searchAllStudents -> 304
+ -> 200
+[07-22-2025 07:49:09]: 172.19.0.1 (anishban) GET /public/js/searchAllStudents.js -> 304
+[07-22-2025 07:49:10]: 172.19.0.1 (anishban) POST /search/by-reg -> 500
+[07-22-2025 09:25:18]: 172.19.0.1 (anishban) POST /search/by-name -> 200
+[07-22-2025 09:25:28]: 172.19.0.1 (anishban) POST /search/by-name -> 200
+[07-22-2025 11:46:05]: 172.19.0.1 GET /favicon.ico -> 404
+[07-22-2025 11:46:12]: 172.19.0.1 POST /search/by-name -> 200
+[07-22-2025 11:49:23]: 172.19.0.1 POST /search/by-name -> 200
+[07-22-2025 12:32:42]: 172.19.0.1 POST /search/by-name -> 200
+[07-22-2025 12:32:52]: 172.19.0.1 GET /admin/dashboard -> 302
+[07-22-2025 12:32:52]: 172.19.0.1 GET /admin-login -> 200
+[07-22-2025 12:33:03]: 172.19.0.1 POST /admin-login -> 200
+[07-22-2025 12:33:03]: 172.19.0.1 (anishban) GET /admin/dashboard -> 200
+[07-22-2025 12:33:03]: 172.19.0.1 (anishban) GET /api/sessions -> 200
+[07-22-2025 12:33:03]: 172.19.0.1 (anishban) GET /api/my-branch[07-22-2025 12:33:03]: 172.19.0.1 (anishban) GET /partials/dashboard -> 304
+ -> 200
+[07-22-2025 12:33:03]: 172.19.0.1 (anishban) GET /public/js/dashboard.js -> 304
+[07-22-2025 12:33:03]: 172.19.0.1 (anishban) GET /api/me -> 200
+[07-22-2025 12:33:07]: 172.19.0.1 (anishban) GET /partials/searchAllStudents -> 304
+[07-22-2025 12:33:07]: 172.19.0.1 (anishban) GET /public/js/searchAllStudents.js -> 304
+[07-22-2025 12:33:18]: 172.19.0.1 (anishban) POST /search/by-reg -> 500
+[07-22-2025 12:35:40]: 172.19.0.1 (anishban) GET /admin/dashboard -> 304
+[07-22-2025 12:35:40]: 172.19.0.1 (anishban) GET /api/my-branch[07-22-2025 12:35:40]: 172.19.0.1 (anishban) GET /partials/searchAllStudents -> 304
+[07-22-2025 12:35:40]: 172.19.0.1 (anishban) GET /api/sessions -> 200
+ -> 200
+[07-22-2025 12:35:40]: 172.19.0.1 (anishban) GET /public/js/searchAllStudents.js -> 304
+[07-22-2025 12:35:41]: 172.19.0.1 (anishban) POST /search/by-reg -> 200
+[07-22-2025 12:49:47]: 172.19.0.1 (anishban) GET /admin/dashboard -> 304
+[07-22-2025 12:49:47]: 172.19.0.1 (anishban) GET /api/sessions -> 200
+[07-22-2025 12:49:47]: 172.19.0.1 (anishban) GET /partials/searchAllStudents -> 304
+[07-22-2025 12:49:47]: 172.19.0.1 (anishban) GET /api/my-branch -> 200
+[07-22-2025 12:49:48]: 172.19.0.1 (anishban) GET /public/js/searchAllStudents.js -> 304
+[07-22-2025 12:49:58]: 172.19.0.1 (anishban) POST /search/by-reg -> 200
+[07-22-2025 12:52:41]: 172.19.0.1 (anishban) GET /admin/dashboard -> 304
+[07-22-2025 12:52:41]: 172.19.0.1 (anishban) GET /api/sessions -> 200
+[07-22-2025 12:52:41]: 172.19.0.1 (anishban) GET /api/my-branch[07-22-2025 12:52:41]: 172.19.0.1 (anishban) GET /partials/searchAllStudents -> 304
+ -> 200
+[07-22-2025 12:52:41]: 172.19.0.1 (anishban) GET /public/js/searchAllStudents.js -> 304
+[07-22-2025 12:52:42]: 172.19.0.1 (anishban) POST /search/by-reg -> 200
+[07-22-2025 12:55:24]: 172.19.0.1 (anishban) GET /admin/dashboard -> 304
+[07-22-2025 12:55:24]: 172.19.0.1 (anishban) GET /api/sessions -> 200
+[07-22-2025 12:55:24]: 172.19.0.1 (anishban) GET /api/my-branch[07-22-2025 12:55:24]: 172.19.0.1 (anishban) GET /partials/searchAllStudents -> 304
+ -> 200
+[07-22-2025 12:55:24]: 172.19.0.1 (anishban) GET /public/js/searchAllStudents.js -> 304
+[07-22-2025 12:55:25]: 172.19.0.1 (anishban) POST /search/by-reg -> 200
+[07-22-2025 12:58:08]: 172.19.0.1 (anishban) GET /admin/dashboard -> 304
+[07-22-2025 12:58:08]: 172.19.0.1 (anishban) GET /api/sessions -> 200
+[07-22-2025 12:58:08]: 172.19.0.1 (anishban) GET /api/my-branch[07-22-2025 12:58:08]: 172.19.0.1 (anishban) GET /partials/searchAllStudents -> 304
+ -> 200
+[07-22-2025 12:58:08]: 172.19.0.1 (anishban) GET /public/js/searchAllStudents.js -> 304
+[07-22-2025 12:58:09]: 172.19.0.1 (anishban) POST /search/by-reg -> 200
+[07-22-2025 13:06:25]: 172.19.0.1 (anishban) GET /admin/dashboard -> 304
+[07-22-2025 13:06:25]: 172.19.0.1 (anishban) GET /api/sessions -> 200
+[07-22-2025 13:06:25]: 172.19.0.1 (anishban) GET /partials/searchAllStudents -> 304
+[07-22-2025 13:06:25]: 172.19.0.1 (anishban) GET /api/my-branch -> 200
+[07-22-2025 13:06:25]: 172.19.0.1 (anishban) GET /public/js/searchAllStudents.js -> 304
+[07-22-2025 13:06:27]: 172.19.0.1 (anishban) POST /search/by-reg -> 200
+[07-22-2025 13:15:34]: 172.19.0.1 (anishban) GET /admin/dashboard -> 304
+[07-22-2025 13:15:34]: 172.19.0.1 (anishban) GET /api/sessions -> 200
+[07-22-2025 13:15:34]: 172.19.0.1 (anishban) GET /partials/searchAllStudents -> 304
+[07-22-2025 13:15:34]: 172.19.0.1 (anishban) GET /api/my-branch -> 200
+[07-22-2025 13:15:35]: 172.19.0.1 (anishban) GET /public/js/searchAllStudents.js -> 304
+[07-22-2025 13:15:36]: 172.19.0.1 (anishban) POST /search/by-reg -> 200
+[07-22-2025 13:19:23]: 172.19.0.1 (anishban) GET /admin/dashboard -> 304
+[07-22-2025 13:19:23]: 172.19.0.1 (anishban) GET /api/sessions -> 200
+[07-22-2025 13:19:23]: 172.19.0.1 (anishban) GET /api/my-branch[07-22-2025 13:19:23]: 172.19.0.1 (anishban) GET /partials/searchAllStudents -> 304
+ -> 200
+[07-22-2025 13:19:23]: 172.19.0.1 (anishban) GET /public/js/searchAllStudents.js -> 304
+[07-22-2025 13:19:24]: 172.19.0.1 (anishban) POST /search/by-reg -> 200
+[07-22-2025 13:21:22]: 172.19.0.1 (anishban) GET /admin/dashboard -> 304
+[07-22-2025 13:21:22]: 172.19.0.1 (anishban) GET /api/sessions -> 200
+[07-22-2025 13:21:22]: 172.19.0.1 (anishban) GET /partials/searchAllStudents -> 304
+[07-22-2025 13:21:22]: 172.19.0.1 (anishban) GET /api/my-branch -> 200
+[07-22-2025 13:21:22]: 172.19.0.1 (anishban) GET /public/js/searchAllStudents.js -> 304
+[07-22-2025 13:21:24]: 172.19.0.1 (anishban) POST /search/by-reg -> 200
+[07-22-2025 13:24:18]: 172.19.0.1 (anishban) GET /admin/dashboard -> 304
+[07-22-2025 13:24:18]: 172.19.0.1 (anishban) GET /api/sessions -> 200
+[07-22-2025 13:24:18]: 172.19.0.1 (anishban) GET /api/my-branch[07-22-2025 13:24:18]: 172.19.0.1 (anishban) GET /partials/searchAllStudents -> 304
+ -> 200
+[07-22-2025 13:24:18]: 172.19.0.1 (anishban) GET /public/js/searchAllStudents.js -> 304
+[07-22-2025 13:24:20]: 172.19.0.1 (anishban) POST /search/by-reg -> 200
+[07-22-2025 13:24:31]: 172.19.0.1 (anishban) POST /search/by-name -> 200
+[07-22-2025 13:24:48]: 172.19.0.1 (anishban) POST /search/by-reg -> 200
+[07-22-2025 13:33:05]: 172.19.0.1 (anishban) GET /admin/dashboard -> 304
+[07-22-2025 13:33:05]: 172.19.0.1 (anishban) GET /api/my-branch[07-22-2025 13:33:05]: 172.19.0.1 (anishban) GET /partials/searchAllStudents -> 304
+[07-22-2025 13:33:05]: 172.19.0.1 (anishban) GET /api/sessions -> 200
+ -> 200
+[07-22-2025 13:33:05]: 172.19.0.1 (anishban) GET /public/js/searchAllStudents.js -> 304
+[07-22-2025 13:33:07]: 172.19.0.1 (anishban) POST /search/by-reg -> 200
