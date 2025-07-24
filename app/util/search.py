@@ -24,21 +24,26 @@ def search_by_reg(reg: str):
     stuadmn = mongo_client[dbname]['STUADMN'].find_one({'reg_no':reg},{'_id':0,'name':1,'f_name':1,"course_id":1,"batch":1,"scholar":1,"lateral":1,'OtherYCTC':1,'FrontLine':1,"pre_reg":1,"remarks":1})
     formrecv =mongo_client[dbname]['FORMRECV'].find_one({'reg_no':reg},{'_id':0,"sex":1,"caste":1,"dob":1,"add_1":1,"add_2":1,"po":1,"district":1,"pin":1,"phone":1,"mobile":1,"GQ1":1,'GQ2':1,'GQ3':1,'GQ4':1,'TQ':1,"remarks":1})
     receipts = list(mongo_client[dbname]['RECEIPT'].find({'reg_no':reg},{'_id':0,"recpt_type":1,"instalment":1,"recptdate":1,"receiptno":1,"amount":1,"remarks":1}))
-    marks = mongo_client[dbname]['MARKS'].find_one({'reg_no':reg},{'_id':0,'trans_date':1,'certi_date':1})
-    prev_infos = []
-    '''
+    marks = mongo_client[dbname]['MARKS'].find_one({'reg_no':reg},{'_id':0,'trans_date':1,'certi_date':1,'Remarks':1})
+    prev_infos={}
     preg = stuadmn['pre_reg']
+    i=0
     while (True):
-        if np.isnan(preg):
+        if preg is None or (isinstance(preg, float) and np.isnan(preg)):
             break
-    '''
+        preg = str(preg).strip()
+        i+=1
+        ses1, no1 = ((preg.split('/'))[1]).split('-')
+        dbname1 = 'N24'+str(ses1)
+        marks1 = mongo_client[dbname1]['MARKS'].find_one({'reg_no':preg},{'_id':0,'p1s1':1,'p2s1':1,'p3s1':1,'grade':1,'trans_date':1,'certi_date':1,'Remarks':1})
+        stuadmn1 = mongo_client[dbname1]['STUADMN'].find_one({'reg_no':preg},{'_id':0,'pre_reg':1,'course_id':1,'batch':1,'scholar':1,'lateral':1,'OtherYCTC':1,'FrontLine':1,'reg_no':1})
+        prev_infos[i]={'marks':marks1,'stuadmn':stuadmn1}
+        preg = stuadmn1['pre_reg']
+
+    
     return generate_student_profile_html(stuadmn,formrecv,receipts,marks,prev_infos)
 
 
-
-
-from flask import Response
-import numpy as np
 
 def generate_student_profile_html(stuadmn, formrecv, receipts, marks, prev_infos):
     def fmt(value):
@@ -55,6 +60,8 @@ def generate_student_profile_html(stuadmn, formrecv, receipts, marks, prev_infos
             return parts
         return None
     def format_number(value):
+        if value is None or (isinstance(value, float) and np.isnan(value)):
+            return ""
         if isinstance(value, float) and value.is_integer():
             return str(int(value))
         return str(value).strip()
@@ -171,7 +178,80 @@ Phone           : {phone_numbers}
     html += f"\nTranscript       : {fmt(marks.get('trans_date'))} \nCertificate      : {fmt(marks.get('certi_date'))}\n"
 
     # Previous Information (Commented Placeholder)
-    html += "\n<!-- Previous Information block goes here -->\n"
+        # Previous Information Section
+        # Previous Information Section
+    if prev_infos:
+        html += "\n<hr style='border: 0; border-top: 1px solid blue;'>\n"
+        html += "<b>Previous Information:</b>\n"
+
+        for i, info in enumerate(prev_infos.values(), start=1):
+            if not isinstance(info, dict):
+                continue
+
+            pm = info.get('marks', {}) or {}
+            ps = info.get('stuadmn', {}) or {}
+
+            pm = pm if isinstance(pm, dict) else {}
+            ps = ps if isinstance(ps, dict) else {}
+
+            html += f"<b>Previous Information ({i})</b>\n"
+            html += '''
+<table style="width: 100%; border-collapse: collapse; margin-top: 5px; margin-bottom: 10px;">
+  <thead>
+    <tr style="background-color: #ddd;">
+      <th style="border: 1px solid #999; padding: 5px;">RegNo</th>
+      <th style="border: 1px solid #999; padding: 5px;">Course</th>
+      <th style="border: 1px solid #999; padding: 5px;">Batch</th>
+      <th style="border: 1px solid #999; padding: 5px;">Scholar</th>
+      <th style="border: 1px solid #999; padding: 5px;">Lateral</th>
+      <th style="border: 1px solid #999; padding: 5px;">OtherYCTC</th>
+      <th style="border: 1px solid #999; padding: 5px;">FrontLine</th>
+      <th style="border: 1px solid #999; padding: 5px;">Paper-1</th>
+      <th style="border: 1px solid #999; padding: 5px;">Paper-2</th>
+      <th style="border: 1px solid #999; padding: 5px;">Paper-3</th>
+      <th style="border: 1px solid #999; padding: 5px;">Grade</th>
+      <th style="border: 1px solid #999; padding: 5px;">Transcript</th>
+      <th style="border: 1px solid #999; padding: 5px;">Certificate</th>
+      <th style="border: 1px solid #999; padding: 5px;">Remarks</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ccc; padding: 5px;">{reg}</td>
+      <td style="border: 1px solid #ccc; padding: 5px;">{course}</td>
+      <td style="border: 1px solid #ccc; padding: 5px;">{batch}</td>
+      <td style="border: 1px solid #ccc; padding: 5px;">{scholar}</td>
+      <td style="border: 1px solid #ccc; padding: 5px;">{lateral}</td>
+      <td style="border: 1px solid #ccc; padding: 5px;">{otheryctc}</td>
+      <td style="border: 1px solid #ccc; padding: 5px;">{frontline}</td>
+      <td style="border: 1px solid #ccc; padding: 5px;">{p1}</td>
+      <td style="border: 1px solid #ccc; padding: 5px;">{p2}</td>
+      <td style="border: 1px solid #ccc; padding: 5px;">{p3}</td>
+      <td style="border: 1px solid #ccc; padding: 5px;">{grade}</td>
+      <td style="border: 1px solid #ccc; padding: 5px;">{trans}</td>
+      <td style="border: 1px solid #ccc; padding: 5px;">{certi}</td>
+      <td style="border: 1px solid #ccc; padding: 5px;">{remark}</td>
+    </tr>
+  </tbody>
+</table>
+'''.format(
+    reg=fmt(ps.get('reg_no')),
+    course=fmt(ps.get('course_id')),
+    batch=fmt(ps.get('batch')),
+    scholar=fmt(ps.get('scholar')),
+    lateral=fmt(ps.get('lateral')),
+    otheryctc=fmt(ps.get('OtherYCTC')),
+    frontline=fmt(ps.get('FrontLine')),
+    p1=fmt(pm.get('p1s1')),
+    p2=fmt(pm.get('p2s1')),
+    p3=fmt(pm.get('p3s1')),
+    grade=fmt(pm.get('grade')),
+    trans=fmt(pm.get('trans_date')),
+    certi=fmt(pm.get('certi_date')),
+    remark=fmt(pm.get('Remarks')),
+)
+
+
 
     # Fees as a Table
     html += "\n<hr style='border: 0; border-top: 1px solid blue;'>\n"
@@ -217,7 +297,8 @@ Phone           : {phone_numbers}
         html += f"- Student Admission Remark : {stuadmn['remarks']}\n"
     if formrecv.get("remarks") not in [None, "", " - "] and not (isinstance(formrecv.get("remarks"), float) and np.isnan(formrecv.get("remarks"))):
         html += f"- Form Submission Remark   : {formrecv['remarks']}\n"
-
+    if marks.get("Remarks") not in [None, "", " - "] and not (isinstance(marks.get("Remarks"), float) and np.isnan(marks.get("Remarks"))):
+        html += f"- Trans/Certi Remark   : {marks['Remarks']}\n"
     for r in receipts:
         remark = r.get("remarks")
         if remark and not (isinstance(remark, float) and np.isnan(remark)):
