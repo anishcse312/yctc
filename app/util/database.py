@@ -12,7 +12,6 @@ db = mongo_client['yctcdb']
 admins = db['admins']
 calendar_collection = db["calendar_events"]
 sessions = db['sessions']
-admins.insert_one({"Test":"Hi"})
 def createNewCollection(DBName, CollectionName: str):
     if CollectionName in DBName.list_collection_names():
         return False

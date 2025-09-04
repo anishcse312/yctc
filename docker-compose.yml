@@ -4,7 +4,7 @@ name: yctc
 
 services:
   myapp:
-    container_name: my_app
+    container_name: my_app_yctc
     build:
       context: ./app
     env_file:
