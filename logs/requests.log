@@ -64,3 +64,38 @@
  -> 200
 [07-24-2025 10:09:22]: 172.19.0.1 (anishban) GET /public/js/dashboard.js -> 304
 [07-24-2025 10:09:22]: 172.19.0.1 (anishban) GET /api/me -> 200
+[07-31-2025 18:37:17]: 172.19.0.1 GET / -> 200
+[07-31-2025 18:37:17]: 172.19.0.1 GET /public/images/dpsmeg.jpg -> 200
+[07-31-2025 18:37:22]: 172.19.0.1 GET /admin-login -> 200
+[07-31-2025 18:37:32]: 172.19.0.1 POST /admin-login -> 200
+[07-31-2025 18:37:33]: 172.19.0.1 (anishban) GET /admin/dashboard -> 200
+[07-31-2025 18:37:45]: 172.19.0.1 (anishban) GET /api/sessions[07-31-2025 18:37:45]: 172.19.0.1 (anishban) GET /api/my-branch[07-31-2025 18:37:45]: 172.19.0.1 (anishban) GET /partials/dashboard -> 200
+ -> 200
+ -> 200
+[07-31-2025 18:37:45]: 172.19.0.1 (anishban) GET /public/js/dashboard.js -> 200
+[07-31-2025 18:37:45]: 172.19.0.1 (anishban) GET /api/me -> 200
+[08-06-2025 17:07:12]: 172.19.0.1 GET / -> 200
+[08-06-2025 17:07:13]: 172.19.0.1 GET /public/images/dpsmeg.jpg -> 200
+[08-06-2025 17:07:13]: 172.19.0.1 GET /favicon.ico -> 404
+[08-06-2025 17:07:16]: 172.19.0.1 GET /admin-login -> 200
+[08-06-2025 17:07:24]: 172.19.0.1 POST /admin-login -> 401
+[08-06-2025 17:07:29]: 172.19.0.1 POST /admin-login -> 200
+[08-06-2025 17:07:29]: 172.19.0.1 (anishban) GET /admin/dashboard -> 200
+[08-06-2025 17:07:30]: 172.19.0.1 (anishban) GET /api/sessions -> 200
+[08-06-2025 17:07:30]: 172.19.0.1 (anishban) GET /partials/dashboard -> 200
+[08-06-2025 17:07:30]: 172.19.0.1 (anishban) GET /api/my-branch[08-06-2025 17:07:30]: 172.19.0.1 (anishban) GET /public/js/dashboard.js -> 200
+ -> 200
+[08-06-2025 17:07:30]: 172.19.0.1 (anishban) GET /api/me -> 200
+[08-06-2025 17:09:30]: 172.19.0.1 (anishban) GET /partials/searchAllStudents -> 200
+[08-06-2025 17:09:30]: 172.19.0.1 (anishban) GET /public/js/searchAllStudents.js -> 200
+[08-06-2025 17:09:59]: 172.19.0.1 (anishban) GET /partials/settings -> 200
+[08-06-2025 17:09:59]: 172.19.0.1 (anishban) GET /public/js/settings.js -> 200
+[08-06-2025 17:09:59]: 172.19.0.1 (anishban) GET /api/me -> 200
+[08-06-2025 17:09:59]: 172.19.0.1 (anishban) GET /static/default-profile.png -> 404
+[08-06-2025 17:10:07]: 172.19.0.1 (anishban) GET /partials/dashboard -> 304
+[08-06-2025 17:10:07]: 172.19.0.1 (anishban) GET /api/me -> 200
+[09-04-2025 01:08:59]: 172.18.0.1 GET / -> 200
+[09-04-2025 01:09:00]: 172.18.0.1 GET /public/images/dpsmeg.jpg -> 200
+[09-04-2025 01:09:00]: 172.18.0.1 GET /favicon.ico -> 404
+[09-04-2025 01:09:02]: 172.18.0.1 GET /admin-login -> 200
+[09-04-2025 01:09:10]: 172.18.0.1 POST /admin-login -> 401

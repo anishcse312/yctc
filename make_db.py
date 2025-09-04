@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-from database import *
+from app.util.database import *
 
 
 # Path to your root directory with N24 folders

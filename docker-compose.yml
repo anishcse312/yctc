@@ -1,34 +1,20 @@
-services:
-  mongo:
-    image: mongo:6.0
-    container_name: mongo_db
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongodb_data:/data/db
-    restart: unless-stopped
+version: "3.9"
 
+name: yctc
+
+services:
   myapp:
-    container_name: my_app # Give a specific container name
+    container_name: my_app
     build:
       context: ./app
     env_file:
       - .env
-    ports:
-      - "8080:8080" # Expose port 8080 (host:container)
     environment:
-      - DOCKER_DB=true
-      # Assuming the app connects to mongo service named 'mongo' on default port 27017
-      - DB_HOST=mongo
-      # Make sure your app inside the container listens on port 8080
+      # Your Atlas connection string must be in .env as MONGO_URI
+      - MONGO_URI=${MONGO_URI}
       - PORT=8080
-    depends_on:
-      - mongo
+    ports:
+      - "8080:8080"
     volumes:
-      - ./logs:/app/logs # Mount logs directory (Old - kept for reference if needed)
-      # Optional: Mount app code for development ease (uncomment if needed)
-      # - .:/app
+      - ./logs:/app/logs
     restart: unless-stopped
-
-volumes:
-  mongodb_data: # Define the named volume

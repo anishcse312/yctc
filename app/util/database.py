@@ -2,21 +2,17 @@ import os
 from pymongo import MongoClient
 import json
 
-docker_db = os.environ.get('DOCKER_DB', 'false')
+MONGO_URI = os.environ.get("MONGO_URI")
 
-if docker_db == 'true':
-    print('using docker compose db')
-    mongo_client = MongoClient('mongo')
-else:
-    print('using local db')
-    mongo_client = MongoClient('localhost')
+print('using Atlas db via MONGO_URI')
+mongo_client = MongoClient(MONGO_URI)
 
 db = mongo_client['yctcdb']
 
 admins = db['admins']
 calendar_collection = db["calendar_events"]
 sessions = db['sessions']
-
+admins.insert_one({"Test":"Hi"})
 def createNewCollection(DBName, CollectionName: str):
     if CollectionName in DBName.list_collection_names():
         return False
