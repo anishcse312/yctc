@@ -6,8 +6,11 @@ from app.util.database import *
 # Path to your root directory with N24 folders
 base_path = r"C:\yctc\N24"
 
+with open("app/util/session.json",'r') as f:
+    data = json.load(f)
+sessions = data['sessions']
 # Process all N24[1-82] folders
-for i in range(1, 83):
+for i in range(73, 83):
     folder_name = f"N24{i}"
     folder_path = os.path.join(base_path, folder_name)
 
