@@ -5,7 +5,6 @@ from util.authentication import *
 from util.search import *
 from datetime import datetime
 from util.database import *
-from bson.objectid import ObjectId
 from util.api import *
 from flask_mail import Mail, Message
 import os
@@ -42,6 +41,8 @@ def login_required_http(f):
 LOGS_DIR = os.path.join(os.path.dirname(__file__), 'logs')
 LOG_FILE = os.path.join(LOGS_DIR, 'requests.log')
 FULL_LOG_FILE = os.path.join(LOGS_DIR, 'server.log')
+VITE_DIR = os.path.join(os.path.dirname(__file__), 'public', 'vite')
+VITE_INDEX = os.path.join(VITE_DIR, 'index.html')
 
 
 
@@ -139,12 +140,9 @@ def send_home():
     #msg = Message("Test", recipients=['banerji.anish@gmail.com'])
     #msg.body = "Hello. This is a test message"
     #mail.send(msg)
-    return send_file('public/html/home.html',mimetype='text/html')
+    return send_file(VITE_INDEX, mimetype='text/html')
 
 
-@app.route('/public/js/<filename>', methods = ['GET'])
-def sendJS(filename):
-    return send_file('public/js/'+filename, mimetype='text/javascript')
 @app.route('/public/images/<filename>')
 def send_img(filename):
     mimetype = getmimetype(filename)
@@ -152,13 +150,13 @@ def send_img(filename):
 
 @app.route('/admin-login', methods = ['GET'])
 def send_adminLogin():
-    return send_file('public/html/admin-login.html',mimetype='text/html')
+    return send_file(VITE_INDEX, mimetype='text/html')
 
 
 
 @app.route('/admin-register',methods=['GET'])
 def send_adminReg():
-    return send_file('public/html/admin-reg.html',mimetype='text/html')
+    return send_file(VITE_INDEX, mimetype='text/html')
 
 
 
@@ -173,20 +171,24 @@ def adminlogin():
 
 @app.route('/otp',methods=['GET'])
 def sendOtp():
-    return send_file('public/html/otp.html',mimetype='text/html')
+    return send_file(VITE_INDEX, mimetype='text/html')
 
 @app.route('/forgot',methods=['GET'])
 def sendForgot():
-    return send_file('public/html/forgot.html',mimetype='text/html')
+    return send_file(VITE_INDEX, mimetype='text/html')
 
 @app.route('/set-new-password',methods=['GET'])
 def sendNewPass():
-    return send_file('public/html/set-new-pass.html',mimetype='text/html')
+    return send_file(VITE_INDEX, mimetype='text/html')
 
 @app.route('/admin/dashboard', methods=['GET'])
 @login_required_http
 def admin_dashboard():
-    return send_file('public/html/template.html', mimetype='text/html')
+    return send_file(VITE_INDEX, mimetype='text/html')
+
+@app.route('/assets/<path:filename>', methods=['GET'])
+def send_vite_assets(filename):
+    return send_file(os.path.join(VITE_DIR, 'assets', filename))
 
 app.add_url_rule('/forgot','forgot',forgot,methods=['POST'])
 @app.route('/forgot',methods=['POST'])
@@ -216,18 +218,6 @@ def searchregno():
     data = request.get_json()
     regno = data.get("registrationNumber")
     return search_by_reg(regno)
-
-@app.route('/partials/<page>', methods=['GET'])
-def load_partial(page):
-    filepath = f'public/html/partials/{page}.html'
-    if not os.path.exists(filepath):
-        filepath = f'public/html/admin-{page}.html'
-        if not os.path.exists(filepath):
-            abort(404)
-    return send_file(filepath, mimetype='text/html')
-
-
-
 
 if __name__ == "__main__":
     app.run()

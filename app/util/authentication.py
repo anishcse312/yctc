@@ -1,18 +1,22 @@
 import bcrypt
 import hashlib
-from util.database import *
-from flask import make_response, request, jsonify, abort
+from util.database import (
+    get_admin_by_auth_token,
+    get_admin_by_employee_id,
+    get_admin_by_username,
+    update_admin_auth_token,
+    update_admin_registration,
+    clear_admin_auth_token,
+    username_exists,
+)
+from flask import make_response, request, jsonify
 import secrets
-import traceback
 
 def find_auth(auth_token:str):
     auth_token = auth_token.encode('UTF-8')
     hash = hashlib.sha256(auth_token)
-    user = admins.find_one({"auth_token":hash.hexdigest()},{'_id':0})
-    if user != None:
-        return user
-    else:
-        return None
+    user = get_admin_by_auth_token(hash.hexdigest())
+    return user if user is not None else None
     
 def validate_password(password: str):
     special_characters = {'!', '@', '#', '$', '%', '^', '&', '(', ')', '-', '_', '='}
@@ -36,7 +40,7 @@ def admin_login():
         data = request.get_json()
         usr = data.get("username")
         pas = data.get("password")
-        admin_data = admins.find_one({"username":usr})
+        admin_data = get_admin_by_username(usr)
         if validate_password(pas) == False:
             res = make_response(jsonify({"message":"invalid password"}))
             res.headers['X-Content-Type-Options'] = "nosniff"
@@ -54,8 +58,7 @@ def admin_login():
             return res
         auth = secrets.token_hex(10)
         auth_token = hashlib.sha256(auth.encode()).hexdigest()
-        updated = {'auth_token':auth_token}
-        admins.update_one({'username':usr},{'$set':updated})
+        update_admin_auth_token(usr, auth_token)
         res = make_response(jsonify({"message":"Logged In"}))
         res.headers['X-Content-Type-Options'] = "nosniff"
         res.headers['Content-Type']="applicaiton/json"
@@ -75,7 +78,7 @@ def adminReg():
     emp_id = form.get("employee_id")
     username = form.get("username")
 
-    admin_info = admins.find_one({'employeeId':emp_id})
+    admin_info = get_admin_by_employee_id(emp_id)
     if admin_info == None:
         res = make_response(jsonify({"message":"invalid employee id"}))
         res.headers['X-Content-Type-Options'] = "nosniff"
@@ -91,16 +94,14 @@ def adminReg():
         res.headers['X-Content-Type-Options'] = "nosniff"
         res.status_code = 401
         return res
-    usernames = [doc.get("username") for doc in admins.find({}, {"username": 1, "_id": 0})]
-    if username in usernames:
+    if username_exists(username):
         res = make_response(jsonify({"message":"username already taken"}))
         res.headers['X-Content-Type-Options'] = "nosniff"
         res.status_code = 401
         return res
     hashed_pas = bcrypt.hashpw(password.encode(),bcrypt.gensalt())
     hashed_pas = hashed_pas.decode()
-    update_fields = {"username":username, "password":hashed_pas}
-    admins.update_one({"employeeId":emp_id},{'$set':update_fields})
+    update_admin_registration(emp_id, username, hashed_pas)
     res = make_response(jsonify({"message":"user registered successfully"}))
     res.headers['X-Content-Type-Options'] = "nosniff"
     res.status_code = 200
@@ -121,8 +122,7 @@ def logout():
     res.set_cookie(key="auth_token",value=auth_token,max_age=0)
     res.set_cookie(key="branch",max_age=0)
     res.set_cookie(key="session",max_age=0)
-    updated = {"auth_token":""}
-    admins.update_one({"auth_token":auth_token},{"$set":updated})
+    clear_admin_auth_token(auth_token)
     return res
 
 def forgot():
@@ -130,7 +130,7 @@ def forgot():
     empid = data.get('employeeId')
     last = data.get('lastName')
 
-    user = admins.find_one({'employeeId':empid},{'_id':0})
+    user = get_admin_by_employee_id(empid)
     if user == None:
         res = make_response(jsonify({"message":"employee id not found"}))
         res.headers['X-Content-Type-Options'] = "nosniff"
