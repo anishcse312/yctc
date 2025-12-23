@@ -644,7 +644,7 @@ const SearchAllStudentsView = () => {
     let endpoint = "";
 
     if (reg) {
-      payload = { registrationNumber: `YS-N24/${reg}` };
+      payload = { registrationNumber: reg };
       endpoint = "/search/by-reg";
     } else if (name) {
       payload = { name };
@@ -690,8 +690,7 @@ const SearchAllStudentsView = () => {
 
   const handleQuickSelect = useCallback(
     async (fullReg) => {
-      const reg = fullReg.includes("/") ? fullReg.split("/")[1] : fullReg;
-      setRegNumber(reg);
+      setRegNumber(fullReg);
       setStudentName("");
       setMessage("");
       setResultsHtml("");
@@ -716,16 +715,13 @@ const SearchAllStudentsView = () => {
         <form className="form-row" onSubmit={handleSubmit}>
           <label>
             Registration Number
-            <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-              <span>YS-N24/</span>
-              <input
-                className="input"
-                type="text"
-                placeholder="Enter Registration Number"
-                value={regNumber}
-                onChange={(event) => setRegNumber(event.target.value)}
-              />
-            </div>
+            <input
+              className="input"
+              type="text"
+              placeholder="YS-N24/6900155/2022"
+              value={regNumber}
+              onChange={(event) => setRegNumber(event.target.value)}
+            />
           </label>
           <label>
             Or Student Name

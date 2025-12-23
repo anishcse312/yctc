@@ -91,6 +91,7 @@ img {
 .page--dashboard {
   padding: 0;
   align-items: stretch;
+  justify-content: stretch;
 }
 
 .glass-card {
@@ -316,10 +317,8 @@ img {
 }
 
 .sidebar {
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
-  bottom: 0;
   width: 260px;
   padding: 28px 20px;
   background: rgba(5, 23, 44, 0.92);
@@ -327,6 +326,7 @@ img {
   display: flex;
   flex-direction: column;
   gap: 18px;
+  height: 100vh;
 }
 
 .sidebar__brand {
@@ -374,7 +374,6 @@ img {
 }
 
 .main-area {
-  margin-left: 260px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -516,6 +515,7 @@ img {
     width: 100%;
     flex-direction: row;
     flex-wrap: wrap;
+    height: auto;
   }
 
   .main-area {

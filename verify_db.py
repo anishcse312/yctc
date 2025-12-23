@@ -28,7 +28,7 @@ def main():
             connect_timeout=5,
         )
         with conn.cursor() as cur:
-            cur.execute("SELECT 1;")
+            cur.execute("SELECT * FROM public.admins;")
             result = cur.fetchone()
         conn.close()
         print(f"PostgreSQL connection OK (SELECT 1 -> {result[0]}).")

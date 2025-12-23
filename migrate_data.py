@@ -9,12 +9,12 @@ from app.util.database import (
 )
 
 
-DATA_ROOT = Path(__file__).resolve().parent
+DATA_ROOT = Path(__file__).resolve().parent / "data"
 BATCH_SIZE = 1000
 
-# Placeholder: list root branch folders here (e.g., ["N24", "M32"]).
-# If empty, the script auto-discovers folders matching the pattern below.
-BRANCH_FOLDERS = ['N24']
+# Optional: set explicit branch folders to load (e.g., ["N24", "M32"]).
+# Leave empty to auto-discover folders in data/ that match BRANCH_PATTERN.
+BRANCH_FOLDERS = []
 
 BRANCH_PATTERN = re.compile(r"^[A-Z]+\\d+$")
 
@@ -52,6 +52,10 @@ def iter_branch_folders():
     if BRANCH_FOLDERS:
         for name in BRANCH_FOLDERS:
             yield DATA_ROOT / name
+        return
+
+    if not DATA_ROOT.exists():
+        print(f"[WARN] Data directory not found: {DATA_ROOT}")
         return
 
     for path in DATA_ROOT.iterdir():
