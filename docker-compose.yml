@@ -6,7 +6,8 @@ services:
   myapp:
     container_name: my_app_yctc
     build:
-      context: ./app
+      context: .
+      dockerfile: app/Dockerfile
     env_file:
       - .env
     environment:
@@ -20,6 +21,8 @@ services:
       - "8080:8080"
     volumes:
       - ./logs:/app/logs
+      - ./N24:/app/N24:ro
+      - ./M32:/app/M32:ro
     restart: unless-stopped
     depends_on:
       - db

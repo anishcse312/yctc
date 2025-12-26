@@ -1,31 +1,100 @@
-from util.database import fetch_student_by_reg, get_sessions, search_formrecv_by_name
-from flask import make_response, jsonify, Response
+from util.authentication import find_auth
+from util.database import (
+    fetch_student_by_reg,
+    get_sessions,
+    get_sessions_for_branches,
+    list_branch_codes,
+    search_stuadmn_by_name,
+)
+from flask import make_response, jsonify, Response, request
 import numpy as np
 
+def parse_branch_from_reg(reg: str):
+    if not reg:
+        return None
+    prefix = reg.split('/')[0]
+    if '-' in prefix:
+        return prefix.split('-')[-1]
+    return prefix
+
+def resolve_branch_from_cookie():
+    return request.cookies.get("branch")
+
+def normalize_branches(branch_field):
+    if branch_field is None:
+        return []
+    if isinstance(branch_field, list):
+        branches = branch_field
+    elif isinstance(branch_field, str):
+        branches = [branch_field]
+    else:
+        branches = list(branch_field)
+    return [str(item).strip() for item in branches if str(item).strip()]
+
+def resolve_allowed_branches():
+    auth_token = request.cookies.get("auth_token")
+    admin = find_auth(auth_token) if auth_token else None
+    branches = normalize_branches(admin.get("branch") if admin else None)
+    if not branches:
+        return []
+    if branches[0].lower() == "master":
+        return list_branch_codes()
+    return [b.upper() for b in branches]
+
 def search_by_name(name: str):
-    sessions = get_sessions()
+    allowed_branches = resolve_allowed_branches()
+    if not allowed_branches:
+        return Response("Forbidden", status=403, mimetype="text/plain")
+    branch_code = resolve_branch_from_cookie()
+    if branch_code and branch_code != "All":
+        if branch_code not in allowed_branches:
+            return Response("Forbidden", status=403, mimetype="text/plain")
+        search_branches = [branch_code]
+        sessions = get_sessions(branch_code)
+    else:
+        search_branches = allowed_branches
+        sessions = get_sessions_for_branches(search_branches)
     ses = [s[0] for s in sessions]
     all_stu = []
-    for session_num in ses:
-        formrecv = search_formrecv_by_name(session_num, name)
-        if formrecv:
-            all_stu.append(formrecv)
+    for branch in search_branches:
+        for session_num in ses:
+            matches = search_stuadmn_by_name(branch, session_num, name)
+            if not matches:
+                continue
+            enriched = []
+            for row in matches:
+                data = fetch_student_by_reg(branch, session_num, row["reg_no"])
+                formrecv = data.get("formrecv") or {}
+                row["dob"] = formrecv.get("dob")
+                enriched.append(row)
+            all_stu.append(enriched)
     return generate_student_table_html(all_stu)
 
 def search_by_reg(reg: str):
     regno = reg.split('/')[1]
+    print("regno=",regno)
     ses, no = regno.split('-')
+    print("ses, no = ",ses,no)
     session_num = int(ses)
-    data = fetch_student_by_reg(session_num, reg)
+    branch_code = parse_branch_from_reg(reg) or resolve_branch_from_cookie()
+    allowed_branches = resolve_allowed_branches()
+    selected_branch = resolve_branch_from_cookie()
+    if not branch_code or not allowed_branches:
+        return Response("Forbidden", status=403, mimetype="text/plain")
+    if selected_branch and selected_branch != "All" and branch_code != selected_branch:
+        return Response("Forbidden", status=403, mimetype="text/plain")
+    if branch_code not in allowed_branches:
+        return Response("Forbidden", status=403, mimetype="text/plain")
+    data = fetch_student_by_reg(branch_code, session_num, reg)
     stuadmn = data.get("stuadmn") or {}
     formrecv = data.get("formrecv") or {}
-    receipts = [row.get("data") for row in data.get("receipts", [])]
+    receipts = data.get("receipts", [])
     marks = data.get("marks") or {}
 
     if not stuadmn and not formrecv:
         return Response("Student not found", status=404, mimetype="text/plain")
     prev_infos={}
-    preg = stuadmn['pre_reg']
+    preg = stuadmn.get('pre_reg')
     i=0
     while (True):
         if preg is None or (isinstance(preg, float) and np.isnan(preg)):
@@ -34,11 +103,12 @@ def search_by_reg(reg: str):
         i+=1
         ses1, no1 = ((preg.split('/'))[1]).split('-')
         dbname1 = 'N24'+str(ses1)
-        prev_data = fetch_student_by_reg(int(ses1), preg)
+        prev_branch = parse_branch_from_reg(preg) or branch_code
+        prev_data = fetch_student_by_reg(prev_branch, int(ses1), preg)
         marks1 = prev_data.get("marks") or {}
         stuadmn1 = prev_data.get("stuadmn") or {}
         prev_infos[i] = {"marks": marks1, "stuadmn": stuadmn1}
-        preg = stuadmn1['pre_reg']
+        preg = stuadmn1.get('pre_reg')
 
     
     return generate_student_profile_html(stuadmn,formrecv,receipts,marks,prev_infos)
@@ -116,7 +186,7 @@ Phone           : {phone_numbers}
   <tbody>
 '''
 
-    for key in ["GQ1", "GQ2", "GQ3", "GQ4"]:
+    for key in ["gq1", "gq2", "gq3", "gq4"]:
         qual = parse_qual(formrecv.get(key))
         if qual:
             exam, year, board, mark = qual
@@ -145,7 +215,7 @@ Phone           : {phone_numbers}
   <tbody>
 '''
 
-    tq = parse_qual(formrecv.get("TQ"))
+    tq = parse_qual(formrecv.get("tq"))
     if tq:
         exam, year, board, mark = tq
         html += f'''
@@ -173,7 +243,7 @@ Phone           : {phone_numbers}
     course = stuadmn.get("course_id", " - ")
     batch = stuadmn.get("batch", " - ")
     html += f"Course          : {fmt(course)}        Batch : {fmt(batch)}\n"
-    for key in ['scholar', 'lateral', 'OtherYCTC', 'FrontLine']:
+    for key in ['scholar', 'lateral', 'otheryctc', 'frontline']:
         html += f"{key.capitalize():<16}: {fmt(stuadmn.get(key))}\n"
     html += f"\nTranscript       : {fmt(marks.get('trans_date'))} \nCertificate      : {fmt(marks.get('certi_date'))}\n"
 
@@ -240,15 +310,15 @@ Phone           : {phone_numbers}
     batch=fmt(ps.get('batch')),
     scholar=fmt(ps.get('scholar')),
     lateral=fmt(ps.get('lateral')),
-    otheryctc=fmt(ps.get('OtherYCTC')),
-    frontline=fmt(ps.get('FrontLine')),
+    otheryctc=fmt(ps.get('otheryctc')),
+    frontline=fmt(ps.get('frontline')),
     p1=fmt(pm.get('p1s1')),
     p2=fmt(pm.get('p2s1')),
     p3=fmt(pm.get('p3s1')),
     grade=fmt(pm.get('grade')),
     trans=fmt(pm.get('trans_date')),
     certi=fmt(pm.get('certi_date')),
-    remark=fmt(pm.get('Remarks')),
+    remark=fmt(pm.get('remarks')),
 )
 
 
@@ -297,8 +367,8 @@ Phone           : {phone_numbers}
         html += f"- Student Admission Remark : {stuadmn['remarks']}\n"
     if formrecv.get("remarks") not in [None, "", " - "] and not (isinstance(formrecv.get("remarks"), float) and np.isnan(formrecv.get("remarks"))):
         html += f"- Form Submission Remark   : {formrecv['remarks']}\n"
-    if marks.get("Remarks") not in [None, "", " - "] and not (isinstance(marks.get("Remarks"), float) and np.isnan(marks.get("Remarks"))):
-        html += f"- Trans/Certi Remark   : {marks['Remarks']}\n"
+    if marks.get("remarks") not in [None, "", " - "] and not (isinstance(marks.get("remarks"), float) and np.isnan(marks.get("remarks"))):
+        html += f"- Trans/Certi Remark   : {marks['remarks']}\n"
     for r in receipts:
         remark = r.get("remarks")
         if remark and not (isinstance(remark, float) and np.isnan(remark)):
@@ -367,3 +437,8 @@ def generate_student_table_html(data):
     '''
 
     return Response(html, mimetype='text/html')
+
+
+if __name__ == "__main__":
+    reg_no = 'YS-N24/35-3300356/2013'
+    r = search_by_reg(reg_no)

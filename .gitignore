@@ -4,3 +4,4 @@ r.py
 .env
 app/frontend/node_modules
 app/public/vite
+*.log

@@ -224,3 +224,425 @@
  -> 500
  -> 500
  -> 500
+ -> 500
+ -> 500
+ -> 500
+ -> 500
+[12-24-2025 06:39:01]: 172.18.0.1 GET / -> 200
+[12-24-2025 06:39:01]: 172.18.0.1 GET /assets/index-CwQV1bIK.css -> 200
+[12-24-2025 06:39:01]: 172.18.0.1 GET /assets/index-CGJetoUi.js -> 200
+[12-24-2025 06:39:02]: 172.18.0.1 GET /public/images/dpsmeg.jpg -> 304
+[12-24-2025 06:39:02]: 172.18.0.1 GET /favicon.ico -> 404
+[12-24-2025 06:39:03]: 172.18.0.1 GET /admin-login -> 200
+[12-24-2025 06:39:03]: 172.18.0.1 GET /assets/index-CGJetoUi.js -> 304
+[12-24-2025 06:39:03]: 172.18.0.1 GET /assets/index-CwQV1bIK.css -> 304
+[12-24-2025 06:39:06]: 172.18.0.1 GET /admin-register -> 200
+[12-24-2025 06:39:06]: 172.18.0.1 GET /assets/index-CGJetoUi.js -> 304
+[12-24-2025 06:39:06]: 172.18.0.1 GET /assets/index-CwQV1bIK.css -> 304
+[12-24-2025 06:39:18]: 172.18.0.1 POST /admin-register -> 200
+[12-24-2025 06:39:20]: 172.18.0.1 GET /admin-login -> 304
+[12-24-2025 06:39:20]: 172.18.0.1 GET /assets/index-CGJetoUi.js -> 304
+[12-24-2025 06:39:20]: 172.18.0.1 GET /assets/index-CwQV1bIK.css -> 304
+[12-24-2025 06:39:27]: 172.18.0.1 POST /admin-login -> 200
+[12-24-2025 06:39:27]: 172.18.0.1 (anishban) GET /admin/dashboard -> 200
+[12-24-2025 06:39:27]: 172.18.0.1 (anishban) GET /assets/index-CGJetoUi.js -> 304
+[12-24-2025 06:39:27]: 172.18.0.1 (anishban) GET /assets/index-CwQV1bIK.css -> 304
+[12-24-2025 06:39:28]: 172.18.0.1 (anishban) GET /api/me -> 200
+[12-24-2025 06:39:28]: 172.18.0.1 (anishban) GET /api/my-branch[12-24-2025 06:39:28]: 172.18.0.1 (anishban) GET /api/sessions -> 200
+ -> 200
+[12-24-2025 06:40:21]: 172.18.0.1 (anishban) POST /search/by-name -> 200
+[12-24-2025 06:40:26]: 172.18.0.1 (anishban) POST /search/by-name -> 200
+[12-24-2025 06:40:56]: 172.18.0.1 (anishban) POST /search/by-name -> 200
+[12-24-2025 06:40:58]: 172.18.0.1 (anishban) POST /search/by-name -> 200
+[12-24-2025 06:41:01]: 172.18.0.1 (anishban) POST /search/by-name -> 200
+[12-24-2025 06:41:01]: 172.18.0.1 (anishban) POST /search/by-name -> 200
+[12-24-2025 06:41:02]: 172.18.0.1 (anishban) POST /search/by-name -> 200
+[12-24-2025 06:41:02]: 172.18.0.1 (anishban) POST /search/by-name -> 200
+[12-24-2025 06:41:03]: 172.18.0.1 (anishban) POST /search/by-name -> 200
+[12-24-2025 06:41:19]: 172.18.0.1 (anishban) POST /search/by-reg -> 404
+[12-24-2025 06:42:18]: 172.18.0.1 (anishban) GET /assets/index-CwQV1bIK.css -> 304
+[12-24-2025 06:42:18]: 172.18.0.1 (anishban) GET /.well-known/appspecific/com.chrome.devtools.json -> 404
+[12-24-2025 06:42:21]: 172.18.0.1 (anishban) POST /search/by-reg -> 404
+[12-25-2025 09:07:22]: 172.18.0.1 GET / -> 200
+[12-25-2025 09:07:22]: 172.18.0.1 GET /assets/index-CwQV1bIK.css -> 200
+[12-25-2025 09:07:22]: 172.18.0.1 GET /assets/index-CGJetoUi.js -> 200
+[12-25-2025 09:07:22]: 172.18.0.1 GET /public/images/dpsmeg.jpg -> 304
+[12-25-2025 09:07:22]: 172.18.0.1 GET /favicon.ico -> 404
+[12-25-2025 09:12:40]: 172.18.0.1 GET /admin-login -> 200
+[12-25-2025 09:12:40]: 172.18.0.1 GET /assets/index-CGJetoUi.js -> 304
+[12-25-2025 09:12:40]: 172.18.0.1 GET /assets/index-CwQV1bIK.css -> 304
+[12-25-2025 09:12:47]: 172.18.0.1 GET /admin-register -> 200
+[12-25-2025 09:12:47]: 172.18.0.1 GET /assets/index-CGJetoUi.js -> 304
+[12-25-2025 09:12:47]: 172.18.0.1 GET /assets/index-CwQV1bIK.css -> 304
+[12-25-2025 09:12:59]: 172.18.0.1 POST /admin-register -> 200
+[12-25-2025 09:13:00]: 172.18.0.1 GET /admin-login -> 304
+[12-25-2025 09:13:00]: 172.18.0.1 GET /assets/index-CGJetoUi.js -> 304
+[12-25-2025 09:13:00]: 172.18.0.1 GET /assets/index-CwQV1bIK.css -> 304
+[12-25-2025 09:13:08]: 172.18.0.1 POST /admin-login -> 200
+[12-25-2025 09:13:08]: 172.18.0.1 (anishban) GET /admin/dashboard -> 200
+[12-25-2025 09:13:08]: 172.18.0.1 (anishban) GET /assets/index-CGJetoUi.js -> 304
+[12-25-2025 09:13:08]: 172.18.0.1 (anishban) GET /assets/index-CwQV1bIK.css -> 304
+[12-25-2025 09:13:08]: 172.18.0.1 (anishban) GET /api/sessions[12-25-2025 09:13:08]: 172.18.0.1 (anishban) GET /api/me[12-25-2025 09:13:08]: 172.18.0.1 (anishban) GET /api/my-branch -> 200
+ -> 200
+ -> 200
+[12-25-2025 09:15:34]: 172.18.0.1 (anishban) POST /search/by-reg -> 200
+[12-25-2025 09:17:08]: 172.18.0.1 (anishban) POST /search/by-name -> 500
+[12-25-2025 09:17:19]: 172.18.0.1 (anishban) POST /search/by-name -> 500
+[12-25-2025 09:17:31]: 172.18.0.1 (anishban) POST /search/by-name -> 500
+[12-25-2025 09:17:45]: 172.18.0.1 (anishban) POST /search/by-reg -> 500
+[12-25-2025 09:18:15]: 172.18.0.1 (anishban) POST /search/by-name -> 500
+[12-25-2025 09:18:25]: 172.18.0.1 (anishban) POST /search/by-reg -> 200
+[12-25-2025 09:19:12]: 172.18.0.1 (anishban) GET /api/me -> 200
+[12-25-2025 09:19:12]: 172.18.0.1 (anishban) GET /static/default-profile.png -> 404
+ -> 500
+ -> 500
+ -> 500
+ -> 500
+ -> 500
+ -> 500
+ -> 500
+ -> 500
+ -> 200
+ -> 200
+ -> 200
+ -> 200
+ -> 200
+ -> 200
+ -> 200
+ -> 200
+ -> 200
+ -> 200
+ -> 200
+ -> 200
+ -> 200
+[12-25-2025 09:45:28]: 172.18.0.1 GET /.well-known/appspecific/com.chrome.devtools.json -> 404
+[12-25-2025 09:45:30]: 172.18.0.1 GET / -> 200
+[12-25-2025 09:45:30]: 172.18.0.1 GET /assets/index-D7vBu_HS.css -> 200
+[12-25-2025 09:45:30]: 172.18.0.1 GET /assets/index-C0zLtclt.js -> 200
+[12-25-2025 09:45:30]: 172.18.0.1 GET /.well-known/appspecific/com.chrome.devtools.json -> 404
+[12-25-2025 09:45:30]: 172.18.0.1 GET /public/images/dpsmeg.jpg -> 304
+[12-25-2025 09:45:35]: 172.18.0.1 GET /admin-login -> 200
+[12-25-2025 09:45:35]: 172.18.0.1 GET /assets/index-D7vBu_HS.css -> 304
+[12-25-2025 09:45:35]: 172.18.0.1 GET /assets/index-C0zLtclt.js -> 304
+[12-25-2025 09:45:41]: 172.18.0.1 POST /admin-login -> 200
+[12-25-2025 09:45:42]: 172.18.0.1 (anishban) GET /admin/dashboard -> 200
+[12-25-2025 09:45:42]: 172.18.0.1 (anishban) GET /assets/index-D7vBu_HS.css -> 304
+[12-25-2025 09:45:42]: 172.18.0.1 (anishban) GET /assets/index-C0zLtclt.js -> 304
+[12-25-2025 09:45:42]: 172.18.0.1 (anishban) GET /public/images/dpsmeg.jpg -> 304
+[12-25-2025 09:46:18]: 172.18.0.1 (anishban) GET /admin-login -> 200
+[12-25-2025 09:46:18]: 172.18.0.1 (anishban) GET /assets/index-C0zLtclt.js -> 304
+[12-25-2025 09:46:18]: 172.18.0.1 (anishban) GET /assets/index-D7vBu_HS.css -> 304
+[12-25-2025 09:46:28]: 172.18.0.1 (anishban) POST /admin-login -> 200
+[12-25-2025 09:46:28]: 172.18.0.1 (anishban) GET /admin/dashboard -> 304
+[12-25-2025 09:46:28]: 172.18.0.1 (anishban) GET /assets/index-C0zLtclt.js -> 304
+[12-25-2025 09:46:28]: 172.18.0.1 (anishban) GET /assets/index-D7vBu_HS.css -> 304
+[12-25-2025 09:46:28]: 172.18.0.1 (anishban) GET /public/images/dpsmeg.jpg -> 304
+[12-25-2025 09:46:46]: 172.18.0.1 (anishban) GET /assets/index-D7vBu_HS.css -> 304
+[12-25-2025 09:46:46]: 172.18.0.1 (anishban) GET /.well-known/appspecific/com.chrome.devtools.json -> 404
+[12-25-2025 09:46:49]: 172.18.0.1 (anishban) GET /admin-login -> 200
+[12-25-2025 09:46:49]: 172.18.0.1 (anishban) GET /.well-known/appspecific/com.chrome.devtools.json -> 404
+[12-25-2025 09:46:49]: 172.18.0.1 (anishban) GET /assets/index-D7vBu_HS.css -> 304
+[12-25-2025 09:46:49]: 172.18.0.1 (anishban) GET /assets/index-C0zLtclt.js -> 304
+[12-25-2025 09:46:57]: 172.18.0.1 (anishban) POST /admin-login -> 200
+[12-25-2025 09:46:58]: 172.18.0.1 (anishban) GET /admin/dashboard -> 304
+[12-25-2025 09:46:58]: 172.18.0.1 (anishban) GET /.well-known/appspecific/com.chrome.devtools.json -> 404
+[12-25-2025 09:46:58]: 172.18.0.1 (anishban) GET /assets/index-D7vBu_HS.css -> 304
+[12-25-2025 09:46:58]: 172.18.0.1 (anishban) GET /assets/index-C0zLtclt.js -> 304
+[12-25-2025 09:46:58]: 172.18.0.1 (anishban) GET /public/images/dpsmeg.jpg -> 304
+[12-25-2025 09:49:47]: 172.18.0.1 (anishban) GET /admin-login -> 200
+[12-25-2025 09:49:47]: 172.18.0.1 (anishban) GET /assets/index-C0zLtclt.js -> 304
+[12-25-2025 09:49:47]: 172.18.0.1 (anishban) GET /.well-known/appspecific/com.chrome.devtools.json -> 404
+[12-25-2025 09:49:47]: 172.18.0.1 (anishban) GET /assets/index-D7vBu_HS.css -> 304
+[12-25-2025 09:49:55]: 172.18.0.1 (anishban) POST /admin-login -> 200
+[12-25-2025 09:49:55]: 172.18.0.1 (anishban) GET /admin/dashboard -> 304
+[12-25-2025 09:49:55]: 172.18.0.1 (anishban) GET /assets/index-D7vBu_HS.css -> 304
+[12-25-2025 09:49:55]: 172.18.0.1 (anishban) GET /assets/index-C0zLtclt.js -> 304
+[12-25-2025 09:49:55]: 172.18.0.1 (anishban) GET /.well-known/appspecific/com.chrome.devtools.json -> 404
+[12-25-2025 09:49:55]: 172.18.0.1 (anishban) GET /public/images/dpsmeg.jpg -> 304
+ -> 200
+[12-25-2025 09:53:34]: 172.18.0.1 GET /.well-known/appspecific/com.chrome.devtools.json -> 404
+[12-25-2025 09:53:36]: 172.18.0.1 GET / -> 200
+[12-25-2025 09:53:36]: 172.18.0.1 GET /assets/index-CNSPLtUb.js -> 200
+[12-25-2025 09:53:36]: 172.18.0.1 GET /assets/index-D7vBu_HS.css -> 200
+[12-25-2025 09:53:36]: 172.18.0.1 GET /.well-known/appspecific/com.chrome.devtools.json -> 404
+[12-25-2025 09:53:36]: 172.18.0.1 GET /public/images/dpsmeg.jpg -> 304
+[12-25-2025 09:54:01]: 172.18.0.1 GET /admin-login -> 200
+[12-25-2025 09:54:01]: 172.18.0.1 GET /assets/index-CNSPLtUb.js -> 304
+[12-25-2025 09:54:01]: 172.18.0.1 GET /assets/index-D7vBu_HS.css -> 304
+[12-25-2025 09:54:06]: 172.18.0.1 POST /admin-login -> 200
+[12-25-2025 09:54:06]: 172.18.0.1 (anishban) GET /admin/dashboard -> 200
+[12-25-2025 09:54:06]: 172.18.0.1 (anishban) GET /assets/index-CNSPLtUb.js -> 304
+[12-25-2025 09:54:06]: 172.18.0.1 (anishban) GET /assets/index-D7vBu_HS.css -> 304
+[12-25-2025 09:54:06]: 172.18.0.1 (anishban) GET /api/me -> 200
+[12-25-2025 09:54:06]: 172.18.0.1 (anishban) GET /api/sessions[12-25-2025 09:54:06]: 172.18.0.1 (anishban) GET /api/my-branch -> 200
+ -> 200
+[12-25-2025 09:54:23]: 172.18.0.1 (anishban) POST /search/by-name -> 200
+[12-25-2025 10:01:18]: 172.18.0.1 (anishban) POST /search/by-reg -> 200
+[12-25-2025 10:02:11]: 172.18.0.1 (anishban) GET /api/me -> 200
+ -> 200
+[12-25-2025 10:12:51]: 172.18.0.1 GET / -> 200
+[12-25-2025 10:12:51]: 172.18.0.1 GET /assets/index-DTN_U_bx.css -> 200
+[12-25-2025 10:12:52]: 172.18.0.1 GET /assets/index-C4ZODZWY.js -> 200
+[12-25-2025 10:12:52]: 172.18.0.1 GET /public/images/dpsmeg.jpg -> 304
+[12-25-2025 10:12:53]: 172.18.0.1 GET /admin-login -> 200
+[12-25-2025 10:12:53]: 172.18.0.1 GET /assets/index-C4ZODZWY.js -> 304
+[12-25-2025 10:12:53]: 172.18.0.1 GET /assets/index-DTN_U_bx.css -> 304
+[12-25-2025 10:13:01]: 172.18.0.1 POST /admin-login -> 200
+[12-25-2025 10:13:01]: 172.18.0.1 (anishban) GET /admin/dashboard -> 200
+[12-25-2025 10:13:01]: 172.18.0.1 (anishban) GET /assets/index-C4ZODZWY.js -> 304
+[12-25-2025 10:13:01]: 172.18.0.1 (anishban) GET /assets/index-DTN_U_bx.css -> 304
+[12-25-2025 10:13:02]: 172.18.0.1 (anishban) GET /api/me -> 200
+[12-25-2025 10:13:02]: 172.18.0.1 (anishban) GET /api/sessions[12-25-2025 10:13:02]: 172.18.0.1 (anishban) GET /api/my-branch -> 200
+ -> 200
+[12-25-2025 10:13:23]: 172.18.0.1 (anishban) POST /search/by-reg -> 500
+ -> 200
+[12-25-2025 10:21:49]: 172.18.0.1 GET / -> 200
+[12-25-2025 10:21:49]: 172.18.0.1 GET /assets/index-C4ZODZWY.js -> 200
+[12-25-2025 10:21:49]: 172.18.0.1 GET /assets/index-DTN_U_bx.css -> 200
+[12-25-2025 10:21:49]: 172.18.0.1 GET /public/images/dpsmeg.jpg -> 304
+[12-25-2025 10:21:50]: 172.18.0.1 GET /admin-login -> 200
+[12-25-2025 10:21:50]: 172.18.0.1 GET /assets/index-C4ZODZWY.js -> 304
+[12-25-2025 10:21:50]: 172.18.0.1 GET /assets/index-DTN_U_bx.css -> 304
+[12-25-2025 10:21:57]: 172.18.0.1 POST /admin-login -> 200
+[12-25-2025 10:21:57]: 172.18.0.1 (anishban) GET /admin/dashboard -> 200
+[12-25-2025 10:21:57]: 172.18.0.1 (anishban) GET /assets/index-C4ZODZWY.js -> 304
+[12-25-2025 10:21:57]: 172.18.0.1 (anishban) GET /assets/index-DTN_U_bx.css -> 304
+[12-25-2025 10:21:57]: 172.18.0.1 (anishban) GET /api/me -> 200
+[12-25-2025 10:21:57]: 172.18.0.1 (anishban) GET /api/sessions[12-25-2025 10:21:57]: 172.18.0.1 (anishban) GET /api/my-branch -> 200
+ -> 200
+[12-25-2025 10:22:39]: 172.18.0.1 (anishban) POST /search/by-reg -> 500
+ -> 200
+[12-25-2025 10:38:40]: 172.18.0.1 GET / -> 200
+[12-25-2025 10:38:40]: 172.18.0.1 GET /assets/index-DTN_U_bx.css -> 200
+[12-25-2025 10:38:40]: 172.18.0.1 GET /assets/index-C4ZODZWY.js -> 200
+[12-25-2025 10:38:40]: 172.18.0.1 GET /public/images/dpsmeg.jpg -> 304
+[12-25-2025 10:38:41]: 172.18.0.1 GET /admin-login -> 200
+[12-25-2025 10:38:41]: 172.18.0.1 GET /assets/index-C4ZODZWY.js -> 304
+[12-25-2025 10:38:41]: 172.18.0.1 GET /assets/index-DTN_U_bx.css -> 304
+[12-25-2025 10:38:45]: 172.18.0.1 POST /admin-login -> 200
+[12-25-2025 10:38:46]: 172.18.0.1 (anishban) GET /admin/dashboard -> 200
+[12-25-2025 10:38:46]: 172.18.0.1 (anishban) GET /assets/index-C4ZODZWY.js -> 304
+[12-25-2025 10:38:46]: 172.18.0.1 (anishban) GET /assets/index-DTN_U_bx.css -> 304
+[12-25-2025 10:38:46]: 172.18.0.1 (anishban) GET /api/sessions[12-25-2025 10:38:46]: 172.18.0.1 (anishban) GET /api/my-branch[12-25-2025 10:38:46]: 172.18.0.1 (anishban) GET /api/me -> 200
+ -> 200
+ -> 200
+[12-25-2025 10:39:06]: 172.18.0.1 (anishban) POST /search/by-reg -> 500
+ -> 200
+[12-25-2025 10:39:38]: 172.18.0.1 GET /admin/dashboard -> 302
+[12-25-2025 10:39:38]: 172.18.0.1 GET / -> 200
+[12-25-2025 10:39:38]: 172.18.0.1 GET /assets/index-C4ZODZWY.js -> 304
+[12-25-2025 10:39:38]: 172.18.0.1 GET /assets/index-DTN_U_bx.css -> 304
+[12-25-2025 10:39:40]: 172.18.0.1 GET /admin-login -> 200
+[12-25-2025 10:39:40]: 172.18.0.1 GET /assets/index-C4ZODZWY.js -> 304
+[12-25-2025 10:39:40]: 172.18.0.1 GET /assets/index-DTN_U_bx.css -> 304
+[12-25-2025 10:39:46]: 172.18.0.1 POST /admin-login -> 200
+[12-25-2025 10:39:46]: 172.18.0.1 (anishban) GET /admin/dashboard -> 200
+[12-25-2025 10:39:46]: 172.18.0.1 (anishban) GET /assets/index-C4ZODZWY.js -> 304
+[12-25-2025 10:39:46]: 172.18.0.1 (anishban) GET /assets/index-DTN_U_bx.css -> 304
+[12-25-2025 10:39:46]: 172.18.0.1 (anishban) GET /api/me -> 200
+[12-25-2025 10:39:46]: 172.18.0.1 (anishban) GET /api/sessions[12-25-2025 10:39:46]: 172.18.0.1 (anishban) GET /api/my-branch -> 200
+ -> 200
+[12-25-2025 10:39:52]: 172.18.0.1 (anishban) POST /search/by-reg -> 404
+ -> 200
+[12-25-2025 10:50:03]: 172.18.0.1 GET / -> 304
+[12-25-2025 10:50:03]: 172.18.0.1 GET /assets/index-C4ZODZWY.js -> 304
+[12-25-2025 10:50:03]: 172.18.0.1 GET /assets/index-DTN_U_bx.css -> 304
+[12-25-2025 10:50:04]: 172.18.0.1 GET /public/images/dpsmeg.jpg -> 304
+[12-25-2025 10:50:05]: 172.18.0.1 GET /admin-login -> 200
+[12-25-2025 10:50:05]: 172.18.0.1 GET /assets/index-C4ZODZWY.js -> 304
+[12-25-2025 10:50:05]: 172.18.0.1 GET /assets/index-DTN_U_bx.css -> 304
+[12-25-2025 10:50:14]: 172.18.0.1 POST /admin-login -> 401
+[12-25-2025 10:50:18]: 172.18.0.1 POST /admin-login -> 200
+[12-25-2025 10:50:18]: 172.18.0.1 (anishban) GET /admin/dashboard -> 200
+[12-25-2025 10:50:18]: 172.18.0.1 (anishban) GET /assets/index-C4ZODZWY.js -> 304
+[12-25-2025 10:50:18]: 172.18.0.1 (anishban) GET /assets/index-DTN_U_bx.css -> 304
+[12-25-2025 10:50:18]: 172.18.0.1 (anishban) GET /api/me -> 200
+[12-25-2025 10:50:18]: 172.18.0.1 (anishban) GET /api/my-branch[12-25-2025 10:50:18]: 172.18.0.1 (anishban) GET /api/sessions -> 200
+ -> 200
+[12-25-2025 10:50:24]: 172.18.0.1 (anishban) POST /search/by-reg -> 500
+[12-25-2025 10:51:18]: 172.18.0.1 (anishban) POST /search/by-reg -> 500
+ -> 200
+[12-25-2025 10:52:22]: 172.18.0.1 POST /search/by-reg -> 500
+[12-25-2025 10:56:46]: 172.18.0.1 GET /admin/dashboard -> 302
+[12-25-2025 10:56:46]: 172.18.0.1 GET / -> 304
+[12-25-2025 10:56:46]: 172.18.0.1 GET /assets/index-C4ZODZWY.js -> 304
+[12-25-2025 10:56:46]: 172.18.0.1 GET /assets/index-DTN_U_bx.css -> 304
+[12-25-2025 10:56:46]: 172.18.0.1 GET /public/images/dpsmeg.jpg -> 304
+[12-25-2025 10:56:48]: 172.18.0.1 GET /admin-login -> 200
+[12-25-2025 10:56:48]: 172.18.0.1 GET /assets/index-C4ZODZWY.js -> 304
+[12-25-2025 10:56:48]: 172.18.0.1 GET /assets/index-DTN_U_bx.css -> 304
+[12-25-2025 10:56:53]: 172.18.0.1 POST /admin-login -> 200
+[12-25-2025 10:56:54]: 172.18.0.1 (anishban) GET /admin/dashboard -> 200
+[12-25-2025 10:56:54]: 172.18.0.1 (anishban) GET /assets/index-C4ZODZWY.js -> 304
+[12-25-2025 10:56:54]: 172.18.0.1 (anishban) GET /assets/index-DTN_U_bx.css -> 304
+[12-25-2025 10:56:54]: 172.18.0.1 (anishban) GET /api/me -> 200
+[12-25-2025 10:56:54]: 172.18.0.1 (anishban) GET /api/sessions[12-25-2025 10:56:54]: 172.18.0.1 (anishban) GET /api/my-branch -> 200
+ -> 200
+[12-25-2025 10:56:57]: 172.18.0.1 (anishban) POST /search/by-reg -> 200
+[12-25-2025 11:17:14]: 172.18.0.1 (anishban) POST /search/by-name -> 200
+[12-25-2025 11:17:41]: 172.18.0.1 (anishban) POST /search/by-name -> 200
+ -> 200
+[12-25-2025 11:33:43]: 172.18.0.1 GET / -> 304
+[12-25-2025 11:33:43]: 172.18.0.1 GET /assets/index-C4ZODZWY.js -> 304
+[12-25-2025 11:33:43]: 172.18.0.1 GET /assets/index-DTN_U_bx.css -> 304
+[12-25-2025 11:33:43]: 172.18.0.1 GET /public/images/dpsmeg.jpg -> 304
+[12-25-2025 11:33:44]: 172.18.0.1 GET /admin-login -> 200
+[12-25-2025 11:33:44]: 172.18.0.1 GET /assets/index-C4ZODZWY.js -> 304
+[12-25-2025 11:33:44]: 172.18.0.1 GET /assets/index-DTN_U_bx.css -> 304
+[12-25-2025 11:33:51]: 172.18.0.1 POST /admin-login -> 401
+[12-25-2025 11:33:54]: 172.18.0.1 POST /admin-login -> 200
+[12-25-2025 11:33:54]: 172.18.0.1 (anishban) GET /admin/dashboard -> 200
+[12-25-2025 11:33:54]: 172.18.0.1 (anishban) GET /assets/index-C4ZODZWY.js -> 304
+[12-25-2025 11:33:54]: 172.18.0.1 (anishban) GET /assets/index-DTN_U_bx.css -> 304
+[12-25-2025 11:33:54]: 172.18.0.1 (anishban) GET /api/me -> 200
+[12-25-2025 11:33:54]: 172.18.0.1 (anishban) GET /api/my-branch[12-25-2025 11:33:54]: 172.18.0.1 (anishban) GET /api/sessions -> 200
+ -> 200
+[12-25-2025 11:34:14]: 172.18.0.1 (anishban) POST /search/by-reg -> 403
+[12-25-2025 11:34:21]: 172.18.0.1 (anishban) GET /assets/index-DTN_U_bx.css -> 304
+[12-25-2025 11:34:21]: 172.18.0.1 (anishban) GET /.well-known/appspecific/com.chrome.devtools.json -> 404
+[12-25-2025 11:34:23]: 172.18.0.1 (anishban) POST /search/by-reg -> 403
+[12-25-2025 11:34:41]: 172.18.0.1 (anishban) POST /search/by-name -> 200
+[12-25-2025 11:36:16]: 172.18.0.1 (anishban) GET /admin/dashboard -> 304
+[12-25-2025 11:36:16]: 172.18.0.1 (anishban) GET /assets/index-DTN_U_bx.css -> 304
+[12-25-2025 11:36:16]: 172.18.0.1 (anishban) GET /assets/index-C4ZODZWY.js -> 304
+[12-25-2025 11:36:16]: 172.18.0.1 (anishban) GET /api/sessions -> 200
+[12-25-2025 11:36:16]: 172.18.0.1 (anishban) GET /api/my-branch -> 200
+[12-25-2025 11:36:35]: 172.18.0.1 (anishban) POST /search/by-reg -> 200
+[12-25-2025 11:36:41]: 172.18.0.1 (anishban) POST /search/by-reg -> 200
+[12-25-2025 11:36:59]: 172.18.0.1 (anishban) POST /search/by-reg -> 200
+ -> 200
+[12-25-2025 11:40:28]: 172.18.0.1 GET / -> 200
+[12-25-2025 11:40:28]: 172.18.0.1 GET /assets/index-DaJArpOj.js -> 200
+[12-25-2025 11:40:28]: 172.18.0.1 GET /assets/index-DTN_U_bx.css -> 200
+[12-25-2025 11:40:28]: 172.18.0.1 GET /public/images/dpsmeg.jpg -> 304
+[12-25-2025 11:40:30]: 172.18.0.1 GET /admin-login -> 200
+[12-25-2025 11:40:30]: 172.18.0.1 GET /assets/index-DaJArpOj.js -> 304
+[12-25-2025 11:40:30]: 172.18.0.1 GET /assets/index-DTN_U_bx.css -> 304
+[12-25-2025 11:40:49]: 172.18.0.1 POST /admin-login -> 200
+[12-25-2025 11:40:49]: 172.18.0.1 (anishban) GET /admin/dashboard -> 200
+[12-25-2025 11:40:49]: 172.18.0.1 (anishban) GET /assets/index-DaJArpOj.js -> 304
+[12-25-2025 11:40:49]: 172.18.0.1 (anishban) GET /assets/index-DTN_U_bx.css -> 304
+[12-25-2025 11:40:50]: 172.18.0.1 (anishban) GET /api/me -> 200
+[12-25-2025 11:40:50]: 172.18.0.1 (anishban) GET /api/sessions[12-25-2025 11:40:50]: 172.18.0.1 (anishban) GET /api/my-branch -> 200
+ -> 200
+[12-26-2025 06:19:12]: 172.18.0.1 GET / -> 304
+[12-26-2025 06:19:12]: 172.18.0.1 GET /assets/index-DTN_U_bx.css -> 304
+[12-26-2025 06:19:12]: 172.18.0.1 GET /assets/index-DaJArpOj.js -> 304
+[12-26-2025 06:19:12]: 172.18.0.1 GET /public/images/dpsmeg.jpg -> 304
+[12-26-2025 06:19:12]: 172.18.0.1 GET /favicon.ico -> 404
+[12-26-2025 06:19:15]: 172.18.0.1 GET /admin-login -> 200
+[12-26-2025 06:19:15]: 172.18.0.1 GET /assets/index-DaJArpOj.js -> 304
+[12-26-2025 06:19:15]: 172.18.0.1 GET /assets/index-DTN_U_bx.css -> 304
+[12-26-2025 06:19:21]: 172.18.0.1 POST /admin-login -> 200
+[12-26-2025 06:19:21]: 172.18.0.1 (anishban) GET /admin/dashboard -> 304
+[12-26-2025 06:19:21]: 172.18.0.1 (anishban) GET /assets/index-DaJArpOj.js -> 304
+[12-26-2025 06:19:21]: 172.18.0.1 (anishban) GET /assets/index-DTN_U_bx.css -> 304
+[12-26-2025 06:19:21]: 172.18.0.1 (anishban) GET /api/me -> 200
+[12-26-2025 06:19:21]: 172.18.0.1 (anishban) GET /api/sessions[12-26-2025 06:19:21]: 172.18.0.1 (anishban) GET /api/my-branch -> 200
+ -> 200
+[12-26-2025 06:19:28]: 172.18.0.1 (anishban) GET /admin/dashboard -> 304
+[12-26-2025 06:19:28]: 172.18.0.1 (anishban) GET /assets/index-DaJArpOj.js -> 304
+[12-26-2025 06:19:28]: 172.18.0.1 (anishban) GET /assets/index-DTN_U_bx.css -> 304
+[12-26-2025 06:19:29]: 172.18.0.1 (anishban) GET /api/sessions[12-26-2025 06:19:29]: 172.18.0.1 (anishban) GET /api/my-branch -> 200
+ -> 200
+[12-26-2025 06:19:43]: 172.18.0.1 (anishban) GET /api/me -> 200
+[12-26-2025 06:19:43]: 172.18.0.1 (anishban) GET /static/default-profile.png -> 404
+[12-26-2025 06:19:45]: 172.18.0.1 (anishban) GET /api/me -> 200
+[12-26-2025 06:21:23]: 172.18.0.1 (anishban) GET /api/me -> 200
+[12-26-2025 06:21:23]: 172.18.0.1 (anishban) GET /static/default-profile.png -> 404
+ -> 200
+[12-26-2025 06:30:49]: 172.18.0.1 GET / -> 200
+[12-26-2025 06:30:49]: 172.18.0.1 GET /assets/index-78hTTiYj.js -> 200
+[12-26-2025 06:30:49]: 172.18.0.1 GET /assets/index-DTN_U_bx.css -> 200
+[12-26-2025 06:30:50]: 172.18.0.1 GET /public/images/dpsmeg.jpg -> 304
+[12-26-2025 06:30:51]: 172.18.0.1 GET /admin-login -> 200
+[12-26-2025 06:30:51]: 172.18.0.1 GET /assets/index-78hTTiYj.js -> 304
+[12-26-2025 06:30:51]: 172.18.0.1 GET /assets/index-DTN_U_bx.css -> 304
+[12-26-2025 06:30:57]: 172.18.0.1 POST /admin-login -> 200
+[12-26-2025 06:30:57]: 172.18.0.1 (anishban) GET /admin/dashboard -> 200
+[12-26-2025 06:30:57]: 172.18.0.1 (anishban) GET /assets/index-78hTTiYj.js -> 304
+[12-26-2025 06:30:57]: 172.18.0.1 (anishban) GET /assets/index-DTN_U_bx.css -> 304
+[12-26-2025 06:30:58]: 172.18.0.1 (anishban) GET /api/me -> 200
+[12-26-2025 06:30:58]: 172.18.0.1 (anishban) GET /api/my-branch[12-26-2025 06:30:58]: 172.18.0.1 (anishban) GET /api/sessions -> 200
+ -> 200
+[12-26-2025 06:31:14]: 172.18.0.1 (anishban) GET /api/me -> 200
+[12-26-2025 06:31:15]: 172.18.0.1 (anishban) GET /api/me -> 200
+[12-26-2025 06:31:15]: 172.18.0.1 (anishban) GET /static/default-profile.png -> 404
+[12-26-2025 06:31:16]: 172.18.0.1 (anishban) GET /admin/settings -> 404
+[12-26-2025 06:32:08]: 172.18.0.1 (anishban) GET /admin/settings -> 404
+[12-26-2025 06:32:15]: 172.18.0.1 (anishban) GET /admin-login -> 200
+[12-26-2025 06:32:15]: 172.18.0.1 (anishban) GET /assets/index-78hTTiYj.js -> 304
+[12-26-2025 06:32:15]: 172.18.0.1 (anishban) GET /assets/index-DTN_U_bx.css -> 304
+[12-26-2025 06:32:22]: 172.18.0.1 (anishban) POST /admin-login -> 200
+[12-26-2025 06:32:22]: 172.18.0.1 (anishban) GET /admin/dashboard -> 304
+[12-26-2025 06:32:22]: 172.18.0.1 (anishban) GET /assets/index-78hTTiYj.js -> 304
+[12-26-2025 06:32:22]: 172.18.0.1 (anishban) GET /assets/index-DTN_U_bx.css -> 304
+[12-26-2025 06:32:22]: 172.18.0.1 (anishban) GET /api/me -> 200
+[12-26-2025 06:32:22]: 172.18.0.1 (anishban) GET /api/sessions[12-26-2025 06:32:22]: 172.18.0.1 (anishban) GET /api/my-branch -> 200
+ -> 200
+[12-26-2025 06:32:28]: 172.18.0.1 (anishban) GET /admin/dashboard -> 304
+[12-26-2025 06:32:28]: 172.18.0.1 (anishban) GET /assets/index-78hTTiYj.js -> 304
+[12-26-2025 06:32:28]: 172.18.0.1 (anishban) GET /assets/index-DTN_U_bx.css -> 304
+[12-26-2025 06:32:28]: 172.18.0.1 (anishban) GET /api/me -> 200
+[12-26-2025 06:32:28]: 172.18.0.1 (anishban) GET /api/my-branch[12-26-2025 06:32:28]: 172.18.0.1 (anishban) GET /api/sessions -> 200
+ -> 200
+[12-26-2025 06:32:30]: 172.18.0.1 (anishban) GET /api/me -> 200
+[12-26-2025 06:32:30]: 172.18.0.1 (anishban) GET /static/default-profile.png -> 404
+[12-26-2025 06:32:32]: 172.18.0.1 (anishban) GET /admin/settings -> 404
+[12-26-2025 06:32:36]: 172.18.0.1 (anishban) GET /admin/dashboard -> 304
+[12-26-2025 06:32:36]: 172.18.0.1 (anishban) GET /assets/index-78hTTiYj.js -> 304
+[12-26-2025 06:32:36]: 172.18.0.1 (anishban) GET /assets/index-DTN_U_bx.css -> 304
+[12-26-2025 06:32:36]: 172.18.0.1 (anishban) GET /api/sessions[12-26-2025 06:32:36]: 172.18.0.1 (anishban) GET /api/me -> 200
+[12-26-2025 06:32:36]: 172.18.0.1 (anishban) GET /api/my-branch -> 200
+ -> 200
+[12-26-2025 06:32:40]: 172.18.0.1 (anishban) GET /admin/students/search -> 404
+ -> 200
+[12-26-2025 06:34:45]: 172.18.0.1 GET / -> 304
+[12-26-2025 06:34:45]: 172.18.0.1 GET /assets/index-78hTTiYj.js -> 304
+[12-26-2025 06:34:45]: 172.18.0.1 GET /assets/index-DTN_U_bx.css -> 304
+[12-26-2025 06:34:45]: 172.18.0.1 GET /public/images/dpsmeg.jpg -> 304
+[12-26-2025 06:34:46]: 172.18.0.1 GET /admin-login -> 200
+[12-26-2025 06:34:46]: 172.18.0.1 GET /assets/index-78hTTiYj.js -> 304
+[12-26-2025 06:34:46]: 172.18.0.1 GET /assets/index-DTN_U_bx.css -> 304
+[12-26-2025 06:34:53]: 172.18.0.1 POST /admin-login -> 200
+[12-26-2025 06:34:53]: 172.18.0.1 (anishban) GET /admin/dashboard -> 200
+[12-26-2025 06:34:53]: 172.18.0.1 (anishban) GET /assets/index-78hTTiYj.js -> 304
+[12-26-2025 06:34:53]: 172.18.0.1 (anishban) GET /assets/index-DTN_U_bx.css -> 304
+[12-26-2025 06:34:53]: 172.18.0.1 (anishban) GET /api/me -> 200
+[12-26-2025 06:34:53]: 172.18.0.1 (anishban) GET /api/sessions[12-26-2025 06:34:53]: 172.18.0.1 (anishban) GET /api/my-branch -> 200
+ -> 200
+[12-26-2025 06:35:00]: 172.18.0.1 (anishban) GET /api/me -> 200
+[12-26-2025 06:35:00]: 172.18.0.1 (anishban) GET /static/default-profile.png -> 404
+[12-26-2025 06:34:58]: 172.18.0.1 (anishban) GET /admin/settings -> 200
+[12-26-2025 06:34:58]: 172.18.0.1 (anishban) GET /assets/index-78hTTiYj.js -> 304
+[12-26-2025 06:34:58]: 172.18.0.1 (anishban) GET /assets/index-DTN_U_bx.css -> 304
+[12-26-2025 06:34:58]: 172.18.0.1 (anishban) GET /api/me -> 200
+[12-26-2025 06:34:58]: 172.18.0.1 (anishban) GET /api/sessions[12-26-2025 06:34:58]: 172.18.0.1 (anishban) GET /api/my-branch -> 200
+ -> 200
+[12-26-2025 06:34:58]: 172.18.0.1 (anishban) GET /static/default-profile.png -> 404
+[12-26-2025 06:35:16]: 172.18.0.1 (anishban) POST /update-profile-picture -> 404
+[12-26-2025 06:35:52]: 172.18.0.1 (anishban) GET /api/me -> 200
+[12-26-2025 06:36:04]: 172.18.0.1 (anishban) GET /api/me -> 200
+[12-26-2025 06:36:04]: 172.18.0.1 (anishban) GET /static/default-profile.png -> 404
+[12-26-2025 06:36:07]: 172.18.0.1 (anishban) GET /api/me -> 200
+ -> 200
+[12-26-2025 06:37:58]: 172.18.0.1 GET / -> 200
+[12-26-2025 06:37:58]: 172.18.0.1 GET /assets/index-qf3OU4vw.css -> 200
+[12-26-2025 06:37:58]: 172.18.0.1 GET /assets/index-DxTgKerT.js -> 200
+[12-26-2025 06:37:58]: 172.18.0.1 GET /public/images/dpsmeg.jpg -> 304
+[12-26-2025 06:38:00]: 172.18.0.1 GET /admin-login -> 200
+[12-26-2025 06:38:00]: 172.18.0.1 GET /assets/index-qf3OU4vw.css -> 304
+[12-26-2025 06:38:00]: 172.18.0.1 GET /assets/index-DxTgKerT.js -> 304
+[12-26-2025 06:38:08]: 172.18.0.1 POST /admin-login -> 200
+[12-26-2025 06:38:08]: 172.18.0.1 (anishban) GET /admin/dashboard -> 200
+[12-26-2025 06:38:08]: 172.18.0.1 (anishban) GET /assets/index-DxTgKerT.js -> 304
+[12-26-2025 06:38:08]: 172.18.0.1 (anishban) GET /assets/index-qf3OU4vw.css -> 304
+[12-26-2025 06:38:08]: 172.18.0.1 (anishban) GET /api/me -> 200
+[12-26-2025 06:38:08]: 172.18.0.1 (anishban) GET /api/sessions[12-26-2025 06:38:08]: 172.18.0.1 (anishban) GET /api/my-branch -> 200
+ -> 200
+[12-26-2025 06:41:46]: 172.18.0.1 (anishban) GET /admin/dashboard -> 304
+[12-26-2025 06:41:46]: 172.18.0.1 (anishban) GET /assets/index-DxTgKerT.js -> 304
+[12-26-2025 06:41:46]: 172.18.0.1 (anishban) GET /assets/index-qf3OU4vw.css -> 304
+[12-26-2025 06:41:47]: 172.18.0.1 (anishban) GET /api/me -> 200
+[12-26-2025 06:41:47]: 172.18.0.1 (anishban) GET /api/sessions[12-26-2025 06:41:47]: 172.18.0.1 (anishban) GET /api/my-branch -> 200
+ -> 200

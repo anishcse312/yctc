@@ -29,7 +29,7 @@ def login_required_http(f):
             if request.path.startswith('/api/'):
                  return jsonify({"message": "Authentication required"}), 401
             else:
-                 return redirect(url_for('adminlogin', next=request.url))
+                 return redirect(url_for('send_home', next=request.url))
         # Inject user into request context if needed later (optional)
         # from flask import g
         # g.user = user
@@ -116,6 +116,17 @@ def log_req():
     username = None
     if auth_token != None:
         user = find_auth(auth_token)
+        if user == None:
+            if request.path.startswith('/api/'):
+                response = make_response(jsonify({"message": "Please re-login."}), 401)
+                response.set_cookie("auth_token", "", max_age=0)
+                return response
+            response = make_response(
+                "<script>alert('Please re-login.'); window.location.href = '/';</script>"
+            )
+            response.headers['Content-Type'] = "text/html"
+            response.set_cookie("auth_token", "", max_age=0)
+            return response
         username = user.get('username')
     if username == None or auth_token ==None:
         log = f'[{dt_str}]: {ip} {method} {path}'
@@ -184,6 +195,11 @@ def sendNewPass():
 @app.route('/admin/dashboard', methods=['GET'])
 @login_required_http
 def admin_dashboard():
+    return send_file(VITE_INDEX, mimetype='text/html')
+
+@app.route('/admin/<path:subpath>', methods=['GET'])
+@login_required_http
+def admin_spa_routes(subpath):
     return send_file(VITE_INDEX, mimetype='text/html')
 
 @app.route('/assets/<path:filename>', methods=['GET'])
